@@ -13,7 +13,7 @@ export default function Navbar() {
 				</Link>
 				<Link
 					className='px-20 py-4 rounded-sm'
-					href='/dashboard/peminjaman'
+					href='/dashboard/borrow'
 				>
 					Peminjaman
 				</Link>
