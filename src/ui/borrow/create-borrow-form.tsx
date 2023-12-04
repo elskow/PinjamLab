@@ -27,8 +27,11 @@ export default function CreateBorrowForm() {
 					placeholder='Time End'
 				/>
 
-				<button className='bg-blue-500 text-white rounded-md px-4 py-2'>
+				<button className='bg-blue-500 text-white rounded-md px-4 py-2 mb-3'>
 					Create
+				</button>
+				<button className='bg-red-500 text-white rounded-md px-4 py-2'>
+					Cancel
 				</button>
 			</form>
 		</div>
