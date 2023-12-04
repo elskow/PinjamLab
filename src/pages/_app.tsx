@@ -1,4 +1,7 @@
 import { type AppType } from 'next/app'
+import { Inter } from 'next/font/google'
+
+export const inter = Inter({ subsets: ['latin'] })
 
 import { api } from '@/utils/api'
 
