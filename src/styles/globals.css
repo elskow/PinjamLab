@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+<<<<<<< HEAD
 
 @layer base {
 	:root {
@@ -74,3 +75,5 @@
 		@apply bg-background text-foreground;
 	}
 }
+=======
+>>>>>>> parent of e78aa61 (dep: init shadcn)
