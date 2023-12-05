@@ -10,11 +10,37 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Post {
-    id        Int      @id @default(autoincrement())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+model User {
+    id     Int      @id @default(autoincrement())
+    email  String   @unique
+    name   String?
+    role   String?  @default("Mahasiswa")
+    borrow Borrow[]
+}
 
-    @@index([name])
+model LabAdmins {
+    id     Int      @id @default(autoincrement())
+    email  String   @unique
+    name   String?
+    role   String?  @default("Asisten Lab")
+    borrow Borrow[]
+}
+
+model Borrow {
+    id         Int          @id @default(autoincrement())
+    user       User         @relation(fields: [userId], references: [id])
+    userId     Int
+    labAdmin   LabAdmins    @relation(fields: [labAdminId], references: [id])
+    labAdminId Int
+    Usage      String?
+    Date       DateTime?
+    Duration   Int?
+    Status     BorrowStatus @relation(fields: [statusId], references: [id])
+    statusId   Int
+}
+
+model BorrowStatus {
+    id     Int      @id @default(autoincrement())
+    status String   @unique
+    borrow Borrow[]
 }
