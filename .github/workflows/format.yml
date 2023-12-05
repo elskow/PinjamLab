@@ -1,23 +1,39 @@
-name: Format code with Prettier
-
-# This action works with pull requests and pushes
+name: Prettier
 on:
-  pull_request:
-  push:
-    branches:
-      - main
+    pull_request:
+    push:
+        branches:
+            - main
 
 jobs:
-  prettier:
-    runs-on: ubuntu-latest
+    prettier:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+              with:
+                  ref: ${{ github.head_ref }}
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          ref: ${{ github.head_ref }}
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '18.x'
 
-      - name: Prettify code
-        uses: creyD/prettier_action@v4.3
-        with:
-          prettier_options: --write '**/*.{js,jsx,ts,tsx,css,md,json}'
+            - name: Install dependencies
+              run: npm install
+
+            - name: Run Prettier
+              run: npm run format
+
+            - name: Commit changes
+              uses: stefanzweifel/git-auto-commit-action@v5
+              with:
+                  commit_message: Apply formatting changes
+                  branch: ${{ github.head_ref }}
+                  commit_options: '--no-verify'
+
+            - name: Push changes
+              uses: ad-m/github-push-action@master
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  branch: ${{ github.head_ref }}
