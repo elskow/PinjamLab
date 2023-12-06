@@ -1,3 +1,42 @@
+const data = [
+	{
+		id: 2201,
+		name: 'Budi',
+		email: 'budi@gmail.com',
+		role: 'Mahasiswa',
+	},
+	{
+		id: 2202,
+		name: 'Bambang',
+		email: 'bambang@gmail.com',
+		role: 'Mahasiswa',
+	},
+	{
+		id: 2203,
+		name: 'Jaka',
+		email: 'jaka@gmail.com',
+		role: 'Dosen',
+	},
+	{
+		id: 2204,
+		name: 'Danu',
+		email: 'danu@gmail.com',
+		role: 'Dosen',
+	},
+	{
+		id: 2205,
+		name: 'Sugeng',
+		email: 'sugeng@gmail.com',
+		role: 'Dosen',
+	},
+	{
+		id: 2202,
+		name: 'Karyo',
+		email: 'karyo@gmail.com',
+		role: 'Mahasiswa',
+	},
+]
+
 export default function LabUsage() {
 	return (
 		<main className='p-10'>
@@ -19,20 +58,25 @@ export default function LabUsage() {
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td className='border-solid border-r-2 border-gray-500'>
-							1
-						</td>
-						<td className='border-solid border-x-2 border-gray-500'>
-							2
-						</td>
-						<td className='border-solid border-x-2 border-gray-500'>
-							3
-						</td>
-						<td className='border-solid border-l-2 border-gray-500'>
-							4
-						</td>
-					</tr>
+					{data.map((item, index) => (
+						<tr
+							key={index}
+							className='text-center border-solid border-b-2 border-gray-500'
+						>
+							<td className='border-solid border-x-2 border-gray-500'>
+								{item.id}
+							</td>
+							<td className='border-solid border-x-2 border-gray-500'>
+								{item.name}
+							</td>
+							<td className='border-solid border-x-2 border-gray-500'>
+								{item.email}
+							</td>
+							<td className='border-solid border-x-2 border-gray-500'>
+								{item.role}
+							</td>
+						</tr>
+					))}
 				</tbody>
 			</table>
 		</main>
