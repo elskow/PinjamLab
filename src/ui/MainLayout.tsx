@@ -7,35 +7,15 @@ import {
 	FaBook,
 	FaNewspaper,
 	FaChartBar,
+	FaBars,
 } from 'react-icons/fa'
-import { FaBars } from 'react-icons/fa'
 
 const navItems = [
-	{
-		label: 'Home',
-		icon: <FaHome />,
-		href: '/',
-	},
-	{
-		label: 'Jadwal Kelas',
-		icon: <FaChalkboardTeacher />,
-		href: '/schedule',
-	},
-	{
-		label: 'Peminjaman',
-		icon: <FaBook />,
-		href: '/dashboard',
-	},
-	{
-		label: 'Berita Acara',
-		icon: <FaNewspaper />,
-		href: '/news',
-	},
-	{
-		label: 'Lab dalam Angka',
-		icon: <FaChartBar />,
-		href: '/statistics',
-	},
+	{ label: 'Home', icon: <FaHome />, href: '/' },
+	{ label: 'Jadwal Kelas', icon: <FaChalkboardTeacher />, href: '/schedule' },
+	{ label: 'Peminjaman', icon: <FaBook />, href: '/dashboard' },
+	{ label: 'Berita Acara', icon: <FaNewspaper />, href: '/news' },
+	{ label: 'Lab dalam Angka', icon: <FaChartBar />, href: '/statistics' },
 ]
 
 interface NavItemProps {
@@ -46,30 +26,30 @@ interface NavItemProps {
 	}
 }
 
-const NavItem: React.FC<NavItemProps> = ({ item }) => {
+const NavItem: React.FC<NavItemProps> = ({ item: { label, icon, href } }) => {
 	const router = useRouter()
-	const isActive = router.pathname === item.href
+	const isActive = router.pathname === href
 	const activeClass = isActive ? 'bg-blue-500 text-white' : 'text-gray-700'
 	const hoverClass = isActive ? '' : 'hover:bg-blue-500 hover:text-white'
 
 	return (
-		<li key={item.label} className='mb-4'>
+		<li className='mb-4'>
 			<Link
 				className={`flex items-center space-x-2 p-2 rounded transition-colors ${activeClass} ${hoverClass}`}
-				href={item.href}
+				href={href}
 			>
-				<div className='mr-2'>{item.icon}</div>
-				<span>{item.label}</span>
+				<div className='mr-2'>{icon}</div>
+				<span>{label}</span>
 			</Link>
 		</li>
 	)
 }
 
-export default function MainLayout({
-	children,
-}: {
+interface MainLayoutProps {
 	children: React.ReactNode
-}) {
+}
+
+const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
 	const [isOpen, setIsOpen] = useState(false)
 
 	const toggleMenu = () => {
@@ -85,25 +65,21 @@ export default function MainLayout({
 				</button>
 			</nav>
 			<div className='flex flex-grow overflow-y-hidden'>
-				<div>
-					<aside className='flex flex-grow overflow-y-hidden'>
-						<aside
-							className={`w-full md:w-64 bg-white p-4 border-r border-gray-200 pt-12 md:pt-6 md:sticky md:top-0 h-[calc(100vh-4rem)] overflow-y-auto ${
-								isOpen ? 'block' : 'hidden'
-							} md:block`}
-						>
-							<nav>
-								<ul className='space-y-2 text-sm'>
-									{navItems.map((item) => (
-										<NavItem key={item.label} item={item} />
-									))}
-								</ul>
-							</nav>
-						</aside>
-					</aside>
-				</div>
+				<aside
+					className={`w-full md:w-64 bg-white p-4 border-r border-gray-200 pt-12 md:pt-6 md:sticky md:top-0 h-[calc(100vh-4rem)] overflow-y-auto ${
+						isOpen ? 'block' : 'hidden'
+					} md:block`}
+				>
+					<ul className='space-y-2 text-sm'>
+						{navItems.map((item) => (
+							<NavItem key={item.label} item={item} />
+						))}
+					</ul>
+				</aside>
 				<main className='flex-grow p-8'>{children}</main>
 			</div>
 		</div>
 	)
 }
+
+export default MainLayout
