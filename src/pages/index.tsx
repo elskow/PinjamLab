@@ -1,8 +1,8 @@
-import Layout from './RootLayout'
+import MainLayout from '@/ui/MainLayout'
 
 export default function Home() {
 	return (
-		<Layout>
+		<MainLayout>
 			<header>
 				<div className='flex flex-col items-center justify-center bg-gray-100 p-5'>
 					<p className='text-sm text-gray-500 mb-4 text-center'>
@@ -21,6 +21,6 @@ export default function Home() {
 					</p>
 				</div>
 			</header>
-		</Layout>
+		</MainLayout>
 	)
 }

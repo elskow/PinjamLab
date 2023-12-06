@@ -1,7 +1,11 @@
-import SideBar from '@/ui/sidebar'
-import Nav from '@/ui/nav'
+import SideBar from '@/ui/components/sidebar'
+import Nav from '@/ui/components/nav'
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function MainLayout({
+	children,
+}: {
+	children: React.ReactNode
+}) {
 	return (
 		<div className='min-h-screen bg-gray-100 flex flex-col'>
 			<Nav />

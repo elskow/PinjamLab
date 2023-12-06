@@ -1,10 +1,10 @@
-import Layout from './DashboardLayout'
-import { Create } from '@/ui/borrow/button'
-import LabUsage from '@/ui/dashboard/lab-usage'
+import MainLayout from '@/ui/MainLayout'
+import { Create } from '@/ui/components/borrow/button'
+import LabUsage from '@/ui/components/dashboard/lab-usage'
 
 export default function Page() {
 	return (
-		<Layout>
+		<MainLayout>
 			<div>
 				<h1 className='text-2xl font-semibold px-10'>Lab Usage</h1>
 				<div className='flex pr-10'>
@@ -17,6 +17,6 @@ export default function Page() {
 				</div>
 				<LabUsage />
 			</div>
-		</Layout>
+		</MainLayout>
 	)
 }
