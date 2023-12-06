@@ -15,7 +15,7 @@ const navItems = [
 	{
 		label: 'Peminjaman',
 		icon: <FaBook />,
-		href: '/',
+		href: '/dashboard',
 	},
 	{
 		label: 'Berita Acara',
