@@ -33,15 +33,13 @@ const NavItem: React.FC<NavItemProps> = ({ item: { label, icon, href } }) => {
 	const hoverClass = isActive ? '' : 'hover:bg-blue-500 hover:text-white'
 
 	return (
-		<li className='mb-4'>
-			<Link
-				className={`flex items-center space-x-2 p-2 rounded transition-colors ${activeClass} ${hoverClass}`}
-				href={href}
-			>
-				<div className='mr-2'>{icon}</div>
-				<span>{label}</span>
-			</Link>
-		</li>
+		<Link
+			href={href}
+			className={`flex items-center space-x-2 p-2 rounded transition-colors ${activeClass} ${hoverClass}`}
+		>
+			<div className='mr-2'>{icon}</div>
+			<span>{label}</span>
+		</Link>
 	)
 }
 
@@ -64,12 +62,19 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
 					<FaBars className='text-white text-2xl' />
 				</button>
 			</nav>
+			<nav
+				className={`md:hidden bg-white p-4 border-b border-gray-200 ${
+					isOpen ? 'block' : 'hidden'
+				}`}
+			>
+				<ul className='space-y-2 text-sm'>
+					{navItems.map((item) => (
+						<NavItem key={item.label} item={item} />
+					))}
+				</ul>
+			</nav>
 			<div className='flex flex-grow overflow-y-hidden'>
-				<aside
-					className={`w-full md:w-64 bg-white p-4 border-r border-gray-200 pt-12 md:pt-6 md:sticky md:top-0 h-[calc(100vh-4rem)] overflow-y-auto ${
-						isOpen ? 'block' : 'hidden'
-					} md:block`}
-				>
+				<aside className='w-80 bg-white p-4 border-r border-gray-200 pt-12 md:pt-6 md:sticky md:top-0 overflow-y-hidden md:block hidden'>
 					<ul className='space-y-2 text-sm'>
 						{navItems.map((item) => (
 							<NavItem key={item.label} item={item} />
