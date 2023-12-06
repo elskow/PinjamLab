@@ -15,7 +15,7 @@ export const navItems = [
 	{
 		label: 'Peminjaman',
 		icon: <FaBook />,
-		href: '/',
+		href: '/dashboard',
 	},
 	{
 		label: 'Berita Acara',
@@ -49,12 +49,9 @@ export const NavItem: React.FC<NavItemProps> = ({ item }) => (
 	</li>
 )
 
-export default function Navbar() {
+export default function SideBar() {
 	return (
 		<div>
-			<nav className='bg-blue-800 p-4 flex justify-between items-center shadow-md sticky top-0 z-50'>
-				<div className='text-white text-lg font-bold'>PinjamLab</div>
-			</nav>
 			<aside className='flex flex-grow overflow-y-hidden'>
 				<aside className='w-full md:w-64 bg-white p-4 border-r border-gray-200 pt-12 md:pt-6 md:sticky md:top-0 h-[calc(100vh-4rem)] overflow-y-auto'>
 					<nav>
