@@ -1,3 +1,5 @@
+import { Edit, Delete } from '../borrow/button'
+
 const data = [
 	{
 		id: 2201,
@@ -52,8 +54,11 @@ export default function LabUsage() {
 						<th className='border-solid border-x-2 border-gray-500'>
 							email
 						</th>
-						<th className='border-solid border-l-2 border-gray-500'>
+						<th className='border-solid border-x-2 border-gray-500'>
 							role
+						</th>
+						<th className='flex justify-center border-solid border-l-2 border-gray-500'>
+							Action
 						</th>
 					</tr>
 				</thead>
@@ -63,7 +68,7 @@ export default function LabUsage() {
 							key={index}
 							className='text-center border-solid border-b-2 border-gray-500'
 						>
-							<td className='border-solid border-x-2 border-gray-500'>
+							<td className='border-solid border-r-2 border-gray-500'>
 								{item.id}
 							</td>
 							<td className='border-solid border-x-2 border-gray-500'>
@@ -74,6 +79,14 @@ export default function LabUsage() {
 							</td>
 							<td className='border-solid border-x-2 border-gray-500'>
 								{item.role}
+							</td>
+							<td className='flex items-center justify-evenly border-solid border-l-2 border-gray-500'>
+								<button>
+									<Edit />
+								</button>
+								<button>
+									<Delete />
+								</button>
 							</td>
 						</tr>
 					))}
