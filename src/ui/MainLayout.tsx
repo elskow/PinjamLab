@@ -57,7 +57,9 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
 	return (
 		<div className='min-h-screen bg-gray-100 flex flex-col'>
 			<nav className='bg-blue-800 p-4 flex justify-between items-center shadow-md sticky top-0 z-50'>
-				<div className='text-white text-lg font-bold'>PinjamLab</div>
+				<Link href='/' className='text-white text-lg font-bold'>
+					PinjamLab
+				</Link>
 				<button className='md:hidden' onClick={toggleMenu}>
 					<FaBars className='text-white text-2xl' />
 				</button>

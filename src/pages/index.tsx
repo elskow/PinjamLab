@@ -53,11 +53,11 @@ export default function Home() {
 
 	return (
 		<MainLayout>
-			<div className='container mx-auto px-4'>
+			<div className='container px-4'>
 				<header className='bg-gray-100 p-10 rounded-lg mb-4'>
 					<div className='flex flex-col items-center justify-center space-y-4'>
 						<p className='text-sm text-gray-500 text-center'>
-							{dateTime}
+							{dateTime || getDateTime()}
 						</p>
 						<h1 className='text-3xl font-bold text-center text-black'>
 							Selamat Datang di PinjamLab
