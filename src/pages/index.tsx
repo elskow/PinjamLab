@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { FaRegCalendarAlt, FaRegNewspaper } from 'react-icons/fa'
-import Image from 'next/image'
 import MainLayout from '@/ui/MainLayout'
 import { getDateTime } from '@/utils/getDateTime'
+import { OverviewSchedule } from '@/ui/components/OverviewSchedule'
+import { AvailableStatus } from '@/ui/components/AvailableStatus'
+import { OverviewNews } from '@/ui/components/OverviewNews'
 
 const dummyDataSchedule = [
 	{
@@ -40,6 +41,8 @@ const dummyDataNews = [
 	},
 ]
 
+const isUsed = false
+
 export default function Home() {
 	const [dateTime, setDateTime] = useState(getDateTime())
 
@@ -54,87 +57,24 @@ export default function Home() {
 	return (
 		<MainLayout>
 			<div className='container px-4'>
-				<header className='bg-gray-100 p-10 rounded-lg mb-4'>
+				<header className='bg-gradient-to-r from-gray-500 to-blue-500 p-10 rounded-lg mb-4 text-white shadow-lg'>
 					<div className='flex flex-col items-center justify-center space-y-4'>
-						<p className='text-sm text-gray-500 text-center'>
+						<p className='text-sm text-center'>
 							{dateTime || getDateTime()}
 						</p>
-						<h1 className='text-3xl font-bold text-center text-black'>
+						<h1 className='text-3xl font-bold text-center'>
 							Selamat Datang di PinjamLab
 						</h1>
-						<p className='text-gray-700 text-center'>
+						<p className='text-center'>
 							Sistem Informasi Peminjaman Laboratorium
 						</p>
-						<div className='flex flex-row gap-2 items-center shadow-lg p-2 rounded-lg'>
-							<p className='text-center bold text-black'>
-								Status :
-							</p>
-							<p className='text-center'>Sedang Dipakai</p>
-							<div className='w-3 h-3 bg-green-500 shadow-lg shadow-green-500 rounded-full'></div>
-						</div>
+						{AvailableStatus({ isUsed })}
 					</div>
 				</header>
 				<main className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
-					<div className='p-8 bg-white shadow rounded-lg border'>
-						<div className='flex justify-between items-center mb-4'>
-							<h5 className='text-lg font-bold leading-none text-gray-900 mb-4'>
-								<FaRegCalendarAlt className='align-top inline-block mr-2 text-blue-500' />{' '}
-								Agenda Hari Ini
-							</h5>
-						</div>
-						<div className='space-y-4'>
-							{dummyDataSchedule.map((schedule) => (
-								<div
-									key={schedule.id}
-									className='p-4 bg-gray-100 rounded-lg shadow space-y-2'
-								>
-									<h5 className='font-bold text-gray-900'>
-										{schedule.matakuliah}
-									</h5>
-									<p className='text-sm text-gray-600'>
-										{schedule.dosen}
-									</p>
-									<p className='text-sm text-gray-600'>
-										{schedule.waktu}
-									</p>
-								</div>
-							))}
-						</div>
-					</div>
-					<div className='p-8 bg-white shadow rounded-lg border'>
-						<div className='flex justify-between items-center mb-4'>
-							<h5 className='text-lg font-bold leading-none text-gray-900 mb-4'>
-								<FaRegNewspaper className='align-top inline-block mr-2 text-blue-500' />{' '}
-								Berita &amp; Acara
-							</h5>
-						</div>
-						<div className='flex flex-col space-y-4'>
-							{dummyDataNews.map((news) => (
-								<button
-									key={news.id}
-									className='flex items-center space-x-4 text-left p-4 bg-gray-100 rounded-lg hover:shadow'
-								>
-									<div className='flex-shrink-0'>
-										<Image
-											src={news.src}
-											alt='Random Image'
-											width={100}
-											height={100}
-											className='rounded-md'
-										/>
-									</div>
-									<div className='flex flex-col'>
-										<h5 className='font-bold text-gray-900'>
-											{news.title}
-										</h5>
-										<p className='text-sm text-gray-600'>
-											{news.content}
-										</p>
-									</div>
-								</button>
-							))}
-						</div>
-					</div>
+					{OverviewSchedule({ schedule: dummyDataSchedule })}
+
+					{OverviewNews({ news: dummyDataNews })}
 				</main>
 			</div>
 		</MainLayout>
