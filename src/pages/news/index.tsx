@@ -1,11 +1,13 @@
 import MainLayout from '@/ui/MainLayout'
 import Image from 'next/image'
+import {FaRegNewspaper} from 'react-icons/fa'
 
 export default function Page() {
 	return (
 		<MainLayout>
 			<div className='m-4'>
 				<h1 className='text-2xl font-semibold px-10 text-black'>
+					<FaRegNewspaper className='align-top inline-block mr-2 text-blue-500' />{' '}
 					News &amp; Events
 				</h1>
 			</div>
