@@ -66,7 +66,7 @@ export default function LabUsage() {
 					{data.map((item, index) => (
 						<tr
 							key={index}
-							className='text-center border-solid border-b-2 border-gray-500'
+							className='text-center border-solid border-b-2 border-gray-500 odd:bg-white even:bg-slate-50'
 						>
 							<td className='border-solid border-r-2 border-gray-500'>
 								{item.id}
