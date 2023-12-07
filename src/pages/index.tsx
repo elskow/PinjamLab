@@ -63,7 +63,8 @@ export default function Home() {
 						<p className='text-gray-700 text-center'>
 							Sistem Informasi Peminjaman Laboratorium
 						</p>
-						<div className='flex flex-row gap-2 items-center'>
+						<div className='flex flex-row gap-2 items-center shadow-lg p-2 rounded-lg'>
+							<p className='text-center bold text-black'>Status :</p>
 							<p className='text-center'>Sedang Dipakai</p>
 							<div className='w-3 h-3 bg-green-500 shadow-lg shadow-green-500 rounded-full'></div>
 						</div>
