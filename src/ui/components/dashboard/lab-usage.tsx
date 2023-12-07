@@ -41,49 +41,68 @@ const data = [
 
 export default function LabUsage() {
 	return (
-		<main className='p-10 text-gray-900'>
-			<table className='max-w-md min-w-full bg-gray-100 rounded-md'>
-				<thead className=''>
-					<tr className='border-solid border-b-2 border-gray-200'>
-						<th className='border-solid border-r-2 border-gray-200 py-5'>
+		<div className='flex flex-col space-y-4 overflow-x-auto align-middle min-w-full shadow-lg overflow-hidden border-b border-gray-200 rounded-lg'>
+			<table className='min-w-full divide-y divide-gray-300'>
+				<thead className='bg-gray-200'>
+					<tr>
+						<th
+							scope='col'
+							className='px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider'
+						>
 							No.
 						</th>
-						<th className='border-solid border-x-2 border-gray-200'>
+						<th
+							scope='col'
+							className='px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider'
+						>
 							Name
 						</th>
-						<th className='border-solid border-x-2 border-gray-200 w-32'>
+						<th
+							scope='col'
+							className='px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider'
+						>
 							Date Time
 						</th>
-						<th>Action</th>
+						<th
+							scope='col'
+							className='relative px-6 py-3 text-right text-xs font-medium text-gray-700 uppercase tracking-wider'
+						>
+							Action
+						</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody className='bg-white divide-y divide-gray-200'>
 					{data.map((item, index) => (
-						<tr
-							key={index}
-							className='text-center border-solid border-b-2 border-gray-200'
-						>
-							<td className='border-solid border-r-2 border-gray-200 py-5'>
-								{index + 1}
+						<tr key={index} className='hover:bg-gray-100'>
+							<td className='px-6 py-4 whitespace-nowrap'>
+								<div className='text-sm text-gray-900'>
+									{index + 1}
+								</div>
 							</td>
-							<td className='border-solid border-x-2 border-gray-200'>
-								{item.name}
+							<td className='px-6 py-4 whitespace-nowrap'>
+								<div className='text-sm text-gray-900'>
+									{item.name}
+								</div>
 							</td>
-							<td className='border-solid border-x-2 border-gray-200'>
-								{item.date}
+							<td className='px-6 py-4 whitespace-nowrap'>
+								<div className='text-sm text-gray-900'>
+									{item.date}
+								</div>
 							</td>
-							<td className=''>
-								<button className='mx-2'>
-									<Edit />
-								</button>
-								<button className='mx-2'>
-									<Delete />
-								</button>
+							<td className='px-6 py-4 whitespace-nowrap text-right text-sm font-medium'>
+								<div className='flex justify-end space-x-2'>
+									<button className='text-indigo-600 hover:text-indigo-900 rounded-full p-1'>
+										<Edit />
+									</button>
+									<button className='text-red-600 hover:text-red-900 rounded-full p-1'>
+										<Delete />
+									</button>
+								</div>
 							</td>
 						</tr>
 					))}
 				</tbody>
 			</table>
-		</main>
+		</div>
 	)
 }
