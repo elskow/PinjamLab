@@ -67,7 +67,7 @@ export default function Home() {
 							<p className='text-center'>
 							Sedang Dipakai 
 							</p>
-							<div className='w-3 h-3 bg-green-500 rounded-full'></div>
+							<div className='w-3 h-3 bg-green-500 shadow-md shadow-green-500/50 rounded-full'></div>
 						</div>
 					</div>
 				</header>
