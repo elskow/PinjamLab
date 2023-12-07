@@ -62,24 +62,39 @@ const dummyDataNews = [
 		href: '/news/6',
 	},
 ]
+interface NewsItemProps {
+	id: number
+	date: string
+	news: {title: string
+		description: string
+		image: string
+		href: string}[]
+}
 
 export default function Page() {
+	const groupedNews: NewsItemProps[] = dummyDataNews.reduce((acc: NewsItemProps[], curr) => {
+		const date = curr.date;
+		const newsItem = { title: curr.title, description: curr.description, image: curr.imageSrc, href: curr.href };
+		const existingDate = acc.find((item) => item.date === date);
+		if (existingDate) {
+		  existingDate.news.push(newsItem);
+		} else {
+		  acc.push({ id: curr.id, date: date, news: [newsItem] });
+		}
+		return acc;
+	  }, []);
 	return (
 		<MainLayout>
 			<div className='px-10 m-4'>
 				<h1 className='text-2xl font-semibold mb-8'>
 					Berita dan Acara
 				</h1>
-
 				<div className='flex flex-col gap-6 my-2'>
-					{dummyDataNews.map((news) => (
+					{groupedNews.map((news) => (
 						<NewsItem
 							key={news.id}
-							title={news.title}
 							date={news.date}
-							description={news.description}
-							image={news.imageSrc}
-							href={news.href}
+							news = {news.news}
 						/>
 					))}
 				</div>
