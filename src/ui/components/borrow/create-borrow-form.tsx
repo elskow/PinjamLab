@@ -28,6 +28,13 @@ export default function CreateBorrowForm() {
 					type='time'
 					placeholder='Time End'
 				/>
+				<textarea
+					className='border-2 border-gray-500 rounded-md px-4 py-2 mb-5'
+					name=''
+					id=''
+					rows={5}
+					placeholder='Description'
+				/>
 				<div className='flex justify-end'>
 					<Link href='/dashboard'>
 						<button className='bg-red-500 text-white rounded-md px-4 py-2 mx-4'>

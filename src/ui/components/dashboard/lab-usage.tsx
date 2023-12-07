@@ -41,7 +41,7 @@ const data = [
 
 export default function LabUsage() {
 	return (
-		<main className='p-10'>
+		<main className='p-10 text-gray-900'>
 			<table className='max-w-md min-w-full bg-gray-100 rounded-md'>
 				<thead className=''>
 					<tr className='border-solid border-b-2 border-gray-200'>
