@@ -1,4 +1,4 @@
-import Home from '@/ui/MainLayout'
+import MainLayout from '@/ui/MainLayout'
 
 const dummyDataSchedule = [
 	{
@@ -6,43 +6,42 @@ const dummyDataSchedule = [
 		matakuliah: 'Pemrograman Berbasis Platform',
 		dosen: 'Faris Darari',
 		waktu: '09.00 - 11.00',
-		day: 'Monday',
+		day: 'Senin',
 	},
 	{
 		id: 2,
 		matakuliah: 'DDP 2',
 		dosen: 'Kukuh Nugroho',
 		waktu: '13.00 - 15.00',
-		day: 'Tuesday',
+		day: 'Selasa',
 	},
 	{
 		id: 3,
 		matakuliah: 'Pemrosesan Citra Digital',
 		dosen: 'Arief Kurniawan',
 		waktu: '15.00 - 17.00',
-		day: 'Wednesday',
+		day: 'Rabu',
 	},
 	{
 		id: 4,
 		matakuliah: 'Pemrograman Berbasis Objek',
 		dosen: 'Sugeng Purwanto',
 		waktu: '09.00 - 11.00',
-		day: 'Thursday',
+		day: 'Kamis',
 	},
 ]
 
-const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+const days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat']
 
 export default function Page() {
 	return (
-		<Home>
-			<div>
-				<h1 className='text-2xl font-semibold px-10'>
+		<MainLayout>
+			<div className='px-10 m-4'>
+				<h1 className='text-2xl font-semibold'>
 					Jadwal Penggunaan Kelas
 				</h1>
 
-				{/* md screen */}
-				<div className='md:grid hidden grid-cols-3 gap-4 m-10'>
+				<div className='md:grid hidden grid-cols-3 gap-4 my-10'>
 					{days.map((day) => (
 						<div
 							key={day}
@@ -71,7 +70,6 @@ export default function Page() {
 					))}
 				</div>
 
-				{/* !md screen */}
 				<div className='md:hidden space-y-4 m-10'>
 					{days.map((day) => (
 						<div
@@ -101,6 +99,6 @@ export default function Page() {
 					))}
 				</div>
 			</div>
-		</Home>
+		</MainLayout>
 	)
 }
