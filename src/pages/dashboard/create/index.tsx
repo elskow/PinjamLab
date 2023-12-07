@@ -4,7 +4,7 @@ import MainLayout from '@/ui/MainLayout'
 export default function Page() {
 	return (
 		<MainLayout>
-			<div className='text-center'>
+			<div>
 				<h1 className='text-2xl font-semibold'>Create Borrow</h1>
 				<CreateBorrowForm />
 			</div>
