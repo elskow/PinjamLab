@@ -65,7 +65,7 @@ export default function Home() {
 						</p>
 						<div className='flex flex-row gap-2 items-center'>
 							<p className='text-center'>Sedang Dipakai</p>
-							<div className='w-3 h-3 bg-green-500 shadow-md shadow-green-500/50 rounded-full'></div>
+							<div className='w-3 h-3 bg-green-500 shadow-lg shadow-green-500 rounded-full'></div>
 						</div>
 					</div>
 				</header>
@@ -107,7 +107,7 @@ export default function Home() {
 							{dummyDataNews.map((news) => (
 								<button
 									key={news.id}
-									className='flex items-center space-x-4 text-left p-4 bg-gray-100 rounded-lg shadow'
+									className='flex items-center space-x-4 text-left p-4 bg-gray-100 rounded-lg hover:shadow'
 								>
 									<div className='flex-shrink-0'>
 										<Image
