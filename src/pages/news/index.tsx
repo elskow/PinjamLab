@@ -1,6 +1,6 @@
 import MainLayout from '@/ui/MainLayout'
 import Image from 'next/image'
-import {FaRegNewspaper} from 'react-icons/fa'
+import { FaRegNewspaper } from 'react-icons/fa'
 
 export default function Page() {
 	return (
