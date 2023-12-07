@@ -1,16 +1,8 @@
+import React, { useState, useEffect } from 'react'
 import { FaRegCalendarAlt, FaRegNewspaper } from 'react-icons/fa'
 import Image from 'next/image'
 import MainLayout from '@/ui/MainLayout'
-
-const formatDate = () =>
-	new Date().toLocaleDateString('id-ID', {
-		weekday: 'long',
-		year: 'numeric',
-		month: 'long',
-		day: 'numeric',
-		hour: '2-digit',
-		minute: '2-digit',
-	})
+import { getDateTime } from '@/utils/getDateTime'
 
 const dummyDataSchedule = [
 	{
@@ -49,13 +41,23 @@ const dummyDataNews = [
 ]
 
 export default function Home() {
+	const [dateTime, setDateTime] = useState(getDateTime())
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setDateTime(getDateTime())
+		}, 1000)
+
+		return () => clearInterval(interval)
+	}, [])
+
 	return (
 		<MainLayout>
 			<div className='container mx-auto px-4'>
 				<header className='bg-gray-100 p-10 rounded-lg mb-4'>
 					<div className='flex flex-col items-center justify-center space-y-4'>
 						<p className='text-sm text-gray-500 text-center'>
-							{formatDate()}
+							{dateTime}
 						</p>
 						<h1 className='text-3xl font-bold text-center text-black'>
 							Selamat Datang di PinjamLab
