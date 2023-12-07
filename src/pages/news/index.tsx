@@ -65,24 +65,29 @@ const dummyDataNews = [
 interface NewsItemProps {
 	id: number
 	date: string
-	news: {title: string
-		description: string
-		image: string
-		href: string}[]
+	news: { title: string; description: string; image: string; href: string }[]
 }
 
 export default function Page() {
-	const groupedNews: NewsItemProps[] = dummyDataNews.reduce((acc: NewsItemProps[], curr) => {
-		const date = curr.date;
-		const newsItem = { title: curr.title, description: curr.description, image: curr.imageSrc, href: curr.href };
-		const existingDate = acc.find((item) => item.date === date);
-		if (existingDate) {
-		  existingDate.news.push(newsItem);
-		} else {
-		  acc.push({ id: curr.id, date: date, news: [newsItem] });
-		}
-		return acc;
-	  }, []);
+	const groupedNews: NewsItemProps[] = dummyDataNews.reduce(
+		(acc: NewsItemProps[], curr) => {
+			const date = curr.date
+			const newsItem = {
+				title: curr.title,
+				description: curr.description,
+				image: curr.imageSrc,
+				href: curr.href,
+			}
+			const existingDate = acc.find((item) => item.date === date)
+			if (existingDate) {
+				existingDate.news.push(newsItem)
+			} else {
+				acc.push({ id: curr.id, date: date, news: [newsItem] })
+			}
+			return acc
+		},
+		[],
+	)
 	return (
 		<MainLayout>
 			<div className='px-10 m-4'>
@@ -94,7 +99,7 @@ export default function Page() {
 						<NewsItem
 							key={news.id}
 							date={news.date}
-							news = {news.news}
+							news={news.news}
 						/>
 					))}
 				</div>
