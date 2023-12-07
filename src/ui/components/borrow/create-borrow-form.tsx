@@ -1,7 +1,9 @@
+import Link from 'next/link'
+
 export default function CreateBorrowForm() {
 	return (
-		<div className='flex justify-center'>
-			<form className='flex flex-col'>
+		<div className='flex w-full'>
+			<form className='flex flex-col w-full'>
 				<label htmlFor=''>Borrower Name</label>
 				<input
 					className='border-2 border-gray-500 rounded-md px-4 mb-5'
@@ -11,28 +13,31 @@ export default function CreateBorrowForm() {
 				<label htmlFor=''>Date</label>
 				<input
 					className='border-2 border-gray-500 rounded-md px-4 mb-5'
-					type='text'
+					type='date'
 					placeholder='Date'
 				/>
 				<label htmlFor=''>Time Start</label>
 				<input
 					className='border-2 border-gray-500 rounded-md px-4 mb-5'
-					type='text'
+					type='time'
 					placeholder='Time Start'
 				/>
 				<label htmlFor=''>Time End</label>
 				<input
 					className='border-2 border-gray-500 rounded-md px-4 mb-5'
-					type='text'
+					type='time'
 					placeholder='Time End'
 				/>
-
-				<button className='bg-blue-500 text-white rounded-md px-4 py-2 mb-3'>
-					Create
-				</button>
-				<button className='bg-red-500 text-white rounded-md px-4 py-2'>
-					Cancel
-				</button>
+				<div className='flex justify-end'>
+					<Link href='/dashboard'>
+						<button className='bg-red-500 text-white rounded-md px-4 py-2 mx-4'>
+							Cancel
+						</button>
+					</Link>
+					<button className='bg-blue-500 text-white rounded-md px-4 py-2 mb-3'>
+						Create
+					</button>
+				</div>
 			</form>
 		</div>
 	)
