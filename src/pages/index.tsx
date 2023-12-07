@@ -64,9 +64,7 @@ export default function Home() {
 							Sistem Informasi Peminjaman Laboratorium
 						</p>
 						<div className='flex flex-row gap-2 items-center'>
-							<p className='text-center'>
-							Sedang Dipakai 
-							</p>
+							<p className='text-center'>Sedang Dipakai</p>
 							<div className='w-3 h-3 bg-green-500 rounded-full'></div>
 						</div>
 					</div>
