@@ -57,12 +57,18 @@ export default function Home() {
 						<p className='text-sm text-gray-500 text-center'>
 							{formatDate()}
 						</p>
-						<h1 className='text-3xl font-bold text-center'>
+						<h1 className='text-3xl font-bold text-center text-black'>
 							Selamat Datang di PinjamLab
 						</h1>
 						<p className='text-gray-700 text-center'>
 							Sistem Informasi Peminjaman Laboratorium
 						</p>
+						<div className='flex flex-row gap-2 items-center'>
+							<p className='text-center'>
+							Sedang Dipakai 
+							</p>
+							<div className='w-3 h-3 bg-green-500 rounded-full'></div>
+						</div>
 					</div>
 				</header>
 				<main className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
