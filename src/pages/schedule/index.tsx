@@ -1,4 +1,6 @@
+import { useState, useEffect } from 'react'
 import MainLayout from '@/ui/MainLayout'
+import ScheduleItems from '@/ui/components/schedule/ScheduleItems'
 
 const dummyDataSchedule = [
 	{
@@ -6,6 +8,13 @@ const dummyDataSchedule = [
 		matakuliah: 'Pemrograman Berbasis Platform',
 		dosen: 'Faris Darari',
 		waktu: '09.00 - 11.00',
+		day: 'Senin',
+	},
+	{
+		id: 2,
+		matakuliah: 'Matematika Komputasi',
+		dosen: 'Lutfi Maulana',
+		waktu: '13.00 - 15.00',
 		day: 'Senin',
 	},
 	{
@@ -34,6 +43,17 @@ const dummyDataSchedule = [
 const days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat']
 
 export default function Page() {
+	const [isDesktop, setIsDesktop] = useState(window.innerWidth > 768)
+
+	const updateMedia = () => {
+		setIsDesktop(window.innerWidth > 768)
+	}
+
+	useEffect(() => {
+		window.addEventListener('resize', updateMedia)
+		return () => window.removeEventListener('resize', updateMedia)
+	})
+
 	return (
 		<MainLayout>
 			<div className='px-10 m-4'>
@@ -41,61 +61,21 @@ export default function Page() {
 					Jadwal Penggunaan Kelas
 				</h1>
 
-				<div className='md:grid hidden grid-cols-3 gap-4 my-10'>
+				<div
+					className={
+						isDesktop
+							? 'md:grid hidden grid-cols-2 lg:grid-cols-3 gap-4 my-10'
+							: 'md:hidden space-y-4 m-10'
+					}
+				>
 					{days.map((day) => (
-						<div
+						<ScheduleItems
 							key={day}
-							className='p-4 bg-white rounded-lg shadow space-y-2'
-						>
-							{day}
-							{dummyDataSchedule.map((schedule) => (
-								<div
-									key={schedule.id}
-									className={`p-4 bg-white rounded-lg shadow space-y-2 ${
-										schedule.day === day ? `` : `hidden`
-									}`}
-								>
-									<h5 className='font-bold text-gray-900'>
-										{schedule.matakuliah}
-									</h5>
-									<p className='text-sm text-gray-600'>
-										{schedule.dosen}
-									</p>
-									<p className='text-sm text-gray-600'>
-										{schedule.waktu}
-									</p>
-								</div>
-							))}
-						</div>
-					))}
-				</div>
-
-				<div className='md:hidden space-y-4 m-10'>
-					{days.map((day) => (
-						<div
-							key={day}
-							className='p-4 bg-white rounded-lg shadow space-y-2'
-						>
-							{day}
-							{dummyDataSchedule.map((schedule) => (
-								<div
-									key={schedule.id}
-									className={`p-4 bg-white rounded-lg shadow space-y-2 ${
-										schedule.day === day ? `` : `hidden`
-									}`}
-								>
-									<h5 className='font-bold text-gray-900'>
-										{schedule.matakuliah}
-									</h5>
-									<p className='text-sm text-gray-600'>
-										{schedule.dosen}
-									</p>
-									<p className='text-sm text-gray-600'>
-										{schedule.waktu}
-									</p>
-								</div>
-							))}
-						</div>
+							day={day}
+							schedules={dummyDataSchedule.filter(
+								(schedule) => schedule.day === day,
+							)}
+						/>
 					))}
 				</div>
 			</div>
