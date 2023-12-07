@@ -13,7 +13,7 @@ import {
 const navItems = [
 	{ label: 'Home', icon: <FaHome />, href: '/' },
 	{ label: 'Jadwal Kelas', icon: <FaChalkboardTeacher />, href: '/schedule' },
-	{ label: 'Peminjaman', icon: <FaBook />, href: '/dashboard' },
+	{ label: 'Peminjaman', icon: <FaBook />, href: '/borrow' },
 	{ label: 'Berita Acara', icon: <FaNewspaper />, href: '/news' },
 	{ label: 'Lab dalam Angka', icon: <FaChartBar />, href: '/statistics' },
 ]

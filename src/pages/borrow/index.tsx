@@ -1,6 +1,6 @@
 import MainLayout from '@/ui/MainLayout'
 import { Create } from '@/ui/components/borrow/button'
-import LabUsage from '@/ui/components/dashboard/lab-usage'
+import LabUsage from '@/ui/components/borrow/lab-usage'
 
 export default function Page() {
 	return (

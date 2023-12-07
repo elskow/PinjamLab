@@ -36,7 +36,7 @@ export default function CreateBorrowForm() {
 					placeholder='Description'
 				/>
 				<div className='flex justify-end'>
-					<Link href='/dashboard'>
+					<Link href='/borrow'>
 						<button className='bg-red-500 text-white rounded-md px-4 py-2 mx-4'>
 							Cancel
 						</button>

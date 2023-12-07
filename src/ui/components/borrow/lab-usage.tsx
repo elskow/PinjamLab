@@ -1,4 +1,4 @@
-import { Edit, Delete } from '../borrow/button'
+import { Edit, Delete } from './button'
 
 const data = [
 	{
