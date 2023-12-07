@@ -7,11 +7,11 @@ export default function Page() {
 		<MainLayout>
 			<div className='px-10 m-4'>
 				<h1 className='text-2xl font-semibold mb-6'>Lab Usage</h1>
-				<div className='flex pr-10'>
+				<div className='flex items-center justify-between bg-white p-3 shadow-sm rounded-lg mb-6'>
 					<input
 						type='text'
 						placeholder='Search...'
-						className='block w-full border-2 border-gray-300 rounded-md p-2 mx-10'
+						className='flex-grow outline-none px-4'
 					/>
 					<Create />
 				</div>

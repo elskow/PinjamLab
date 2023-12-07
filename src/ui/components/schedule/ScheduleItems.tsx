@@ -11,7 +11,7 @@ interface ScheduleProps {
 
 export default function ScheduleItems({ day, schedules }: ScheduleProps) {
 	return (
-		<div className='p-6 bg-white rounded-lg shadow-lg space-y-4'>
+		<div className='p-8 bg-white rounded-lg shadow-lg space-y-4'>
 			<div className='font-bold text-lg text-left text-gray-900 mb-2'>
 				{day}
 			</div>
