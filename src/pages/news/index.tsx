@@ -67,7 +67,7 @@ export default function Page() {
 	return (
 		<MainLayout>
 			<div className='px-10 m-4'>
-				<h1 className='text-2xl font-semibold mb-6'>
+				<h1 className='text-2xl font-semibold mb-8'>
 					Berita dan Acara
 				</h1>
 
