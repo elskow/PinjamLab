@@ -18,7 +18,12 @@ const config = {
 		defaultLocale: 'en',
 	},
 	images: {
-		domains: ['picsum.photos',  '1.bp.blogspot.com', 'www.elhuertoemporio.cl', 'cdn.wanderer.moe'],
+		domains: [
+			'picsum.photos',
+			'1.bp.blogspot.com',
+			'www.elhuertoemporio.cl',
+			'cdn.wanderer.moe',
+		],
 	},
 }
 
