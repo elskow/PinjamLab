@@ -27,11 +27,16 @@ export default function Page() {
 						1
 					</div>
 					<div className='flex flex-col basis-1/3 rounded-xl bg-white shadow-lg p-8'>
-					<Image className='rounded-full self-center'width= '170' height='170' alt='gambar' src='https://avatars.githubusercontent.com/u/103118501'/>
+						<Image
+							className='rounded-full self-center'
+							width='170'
+							height='170'
+							alt='gambar'
+							src='https://avatars.githubusercontent.com/u/103118501'
+						/>
 						2
 					</div>
 					<div className='flex flex-col basis-1/3 rounded-xl bg-white shadow-lg p-8'>
-						
 						3
 					</div>
 				</div>
