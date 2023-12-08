@@ -24,7 +24,7 @@ ChartjS.register(
 )
 
 export default function LineChart() {
-	const [chartData] = useState({
+	const [chartDataAcepted] = useState({
 		labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
 		datasets: [
 			{
@@ -34,6 +34,12 @@ export default function LineChart() {
 				backgroundColor: 'rgb(255, 99, 132)',
 				borderColor: 'rgba(255, 99, 132)',
 			},
+		],
+	})
+
+	const [chartDataRequest] = useState({
+		labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+		datasets: [
 			{
 				label: 'Requested',
 				data: [12, 10, 9, 10, 12, 15],
@@ -46,7 +52,10 @@ export default function LineChart() {
 
 	return (
 		<div>
-			<Line data={chartData} />
+			<div className='flex md:flex-row flex-col md:w-1/2 w-full'>
+				<Line data={chartDataAcepted} />
+				<Line data={chartDataRequest} />
+			</div>
 		</div>
 	)
 }
