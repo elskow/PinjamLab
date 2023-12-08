@@ -44,7 +44,7 @@ const days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat']
 export default function Page() {
 	return (
 		<MainLayout>
-			<div className='px-10 m-4'>
+			<div className='m-4 text-gray-900'>
 				<h1 className='text-2xl font-semibold'>
 					Jadwal Penggunaan Kelas
 				</h1>
@@ -59,7 +59,7 @@ export default function Page() {
 					))}
 				</div>
 
-				<div className='md:hidden space-y-4 m-10'>
+				<div className='md:hidden space-y-4 my-10'>
 					{days.map((day) => (
 						<ScheduleItems
 							key={day}
