@@ -8,6 +8,7 @@ import {
 	FaNewspaper,
 	FaChartBar,
 	FaBars,
+	FaUsers,
 } from 'react-icons/fa'
 
 const navItems = [
@@ -16,6 +17,7 @@ const navItems = [
 	{ label: 'Peminjaman', icon: <FaBook />, href: '/borrow' },
 	{ label: 'Berita Acara', icon: <FaNewspaper />, href: '/news' },
 	{ label: 'Lab dalam Angka', icon: <FaChartBar />, href: '/statistics' },
+	{ label: 'About Us', icon: <FaUsers />, href: '/aboutus' },
 ]
 
 interface NavItemProps {
