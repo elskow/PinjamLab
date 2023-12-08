@@ -1,6 +1,5 @@
 import MainLayout from '@/ui/MainLayout'
 
-
 export default function Page() {
 	return (
 		<MainLayout>
