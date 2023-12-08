@@ -44,8 +44,8 @@ const days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat']
 export default function Page() {
 	return (
 		<MainLayout>
-			<div className='m-4 text-gray-900'>
-				<h1 className='text-2xl font-semibold'>
+			<div className='md:px-10 m-4'>
+				<h1 className='text-2xl font-semibold text-gray-900'>
 					Jadwal Penggunaan Kelas
 				</h1>
 

@@ -90,8 +90,8 @@ export default function Page() {
 	)
 	return (
 		<MainLayout>
-			<div className='px-10 m-4'>
-				<h1 className='text-2xl font-semibold mb-8'>
+			<div className='md:px-10 m-4'>
+				<h1 className='text-2xl font-semibold mb-8 text-gray-900'>
 					Berita dan Acara
 				</h1>
 				<div className='flex flex-col gap-6 my-2'>

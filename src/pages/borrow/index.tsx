@@ -5,8 +5,10 @@ import LabUsage from '@/ui/components/borrow/lab-usage'
 export default function Page() {
 	return (
 		<MainLayout>
-			<div className='m-4 text-gray-900'>
-				<h1 className='text-2xl font-semibold mb-6'>Lab Usage</h1>
+			<div className='md:px-10 m-4'>
+				<h1 className='text-2xl font-semibold mb-6 text-gray-900'>
+					Lab Usage
+				</h1>
 				<div className='flex items-center justify-between bg-white p-3 shadow-sm rounded-lg mb-6'>
 					<input
 						type='text'
