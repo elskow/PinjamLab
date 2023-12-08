@@ -3,7 +3,7 @@ import Link from 'next/link'
 export default function CreateBorrowForm() {
 	return (
 		<div className='flex w-full justify-center bg-gray-100 py-12'>
-			<form className='flex flex-col w-1/2 space-y-4 bg-white p-8 rounded-lg shadow-lg'>
+			<form className='flex flex-col md:w-1/2 w-full space-y-4 bg-white p-8 rounded-lg shadow-lg'>
 				<label
 					className='text-lg font-semibold text-gray-700'
 					htmlFor=''
