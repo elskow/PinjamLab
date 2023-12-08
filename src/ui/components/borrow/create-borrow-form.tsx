@@ -3,7 +3,7 @@ import Link from 'next/link'
 export default function CreateBorrowForm() {
 	return (
 		<div className='flex w-full justify-center bg-gray-100 py-12'>
-			<form className='flex flex-col w-1/2 space-y-4 bg-white p-8 rounded-lg shadow-lg'>
+			<form className='flex flex-col md:w-1/2 space-y-4 bg-white p-8 rounded-lg shadow-lg'>
 				<label
 					className='text-lg font-semibold text-gray-700'
 					htmlFor=''
@@ -11,7 +11,7 @@ export default function CreateBorrowForm() {
 					Borrower Name
 				</label>
 				<input
-					className='input input-bordered'
+					className='input input-bordered bg-white text-gray-900'
 					type='text'
 					placeholder='Borrower Name'
 				/>
@@ -22,7 +22,7 @@ export default function CreateBorrowForm() {
 					Date
 				</label>
 				<input
-					className='input input-bordered'
+					className='input input-bordered bg-white text-gray-900'
 					type='date'
 					placeholder='Date'
 				/>
@@ -33,7 +33,7 @@ export default function CreateBorrowForm() {
 					Time Start
 				</label>
 				<input
-					className='input input-bordered'
+					className='input input-bordered bg-white text-gray-900'
 					type='time'
 					placeholder='Time Start'
 				/>
@@ -44,7 +44,7 @@ export default function CreateBorrowForm() {
 					Time End
 				</label>
 				<input
-					className='input input-bordered'
+					className='input input-bordered bg-white text-gray-900'
 					type='time'
 					placeholder='Time End'
 				/>
@@ -55,7 +55,7 @@ export default function CreateBorrowForm() {
 					Description
 				</label>
 				<textarea
-					className='textarea textarea-bordered h-24'
+					className='textarea textarea-bordered bg-white text-gray-900 h-24'
 					name=''
 					id=''
 					rows={5}
@@ -63,7 +63,7 @@ export default function CreateBorrowForm() {
 				/>
 				<div className='flex justify-end space-x-4 mt-6'>
 					<Link href='/borrow'>
-						<button className='btn bg-gray-300 hover:bg-gray-400'>
+						<button className='btn bg-gray-300 hover:bg-gray-400 text-gray-700'>
 							Cancel
 						</button>
 					</Link>
