@@ -5,7 +5,6 @@ import '@/styles/globals.css'
 
 export const inter = Inter({ subsets: ['latin'] })
 
-
 const MyApp: AppType = ({ Component, pageProps }) => {
 	return (
 		<main className={inter.className + ' antialiased'}>
