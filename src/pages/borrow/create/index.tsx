@@ -5,7 +5,7 @@ export default function Page() {
 	return (
 		<MainLayout>
 			<h1 className='text-2xl font-semibold text-gray-900'>
-				Create Borrow
+				Form Peminjaman Laboratorium
 			</h1>
 			<CreateBorrowForm />
 		</MainLayout>
