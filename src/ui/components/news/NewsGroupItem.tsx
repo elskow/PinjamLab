@@ -13,14 +13,14 @@ const NewsItem = ({ title, description, image, href }: NewsItemProps) => {
 		<div className='flex flex-row hover:shadow-lg'>
 			<Link
 				href={href}
-				className='flex shadow-md flex-row rounded flex-grow gap-2 p-6 bg-white space-x-4 items-center'
+				className='flex shadow-md sm:flex-row flex-col rounded-md flex-grow gap-2 p-6 bg-white space-x-4 items-center'
 			>
 				<div className='flex flex-shrink-0'>
 					<Image
-						className='rounded-lg'
+						className='rounded-lg sm:w-32 sm:h-32'
 						alt='gambar'
-						width='120'
-						height='90'
+						width='200'
+						height='120'
 						src={image}
 					/>
 				</div>
