@@ -83,7 +83,6 @@ export default function LineChart({ data, className }: LineChartProps) {
 							},
 							align: 'end',
 							maxHeight: 50,
-							onClick: () => {},
 							maxWidth: 100,
 						},
 						tooltip: {
