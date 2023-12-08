@@ -17,13 +17,7 @@ export default function Page() {
 				</div>
 				<div className='flex flex-row gap-4 items-center'>
 					<div className='flex flex-col basis-1/3 rounded-xl bg-white shadow-lg p-8'>
-						<Image
-							className='rounded-full self-center'
-							width='170'
-							height='170'
-							alt='gambar'
-							src='https://avatars.githubusercontent.com/u/60810604?'
-						/>
+							<Image className='rounded-full self-center'width= '170' height='170' alt='gambar' src='https://avatars.githubusercontent.com/u/60810604?'/>
 						1
 					</div>
 					<div className='flex flex-col basis-1/3 rounded-xl bg-white shadow-lg p-8'>
@@ -31,7 +25,7 @@ export default function Page() {
 						2
 					</div>
 					<div className='flex flex-col basis-1/3 rounded-xl bg-white shadow-lg p-8'>
-						
+					<Image className='rounded-full self-center'width= '170' height='170' alt='gambar' src='https://avatars.githubusercontent.com/u/117156042'/>
 						3
 					</div>
 				</div>
