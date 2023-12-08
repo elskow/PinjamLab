@@ -23,6 +23,7 @@ const config = {
 			'1.bp.blogspot.com',
 			'www.elhuertoemporio.cl',
 			'cdn.wanderer.moe',
+			'avatars.githubusercontent.com',
 		],
 	},
 }

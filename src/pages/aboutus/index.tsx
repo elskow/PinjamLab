@@ -1,4 +1,5 @@
 import MainLayout from '@/ui/MainLayout'
+import Image from 'next/image'
 
 export default function Page() {
 	return (
@@ -14,14 +15,15 @@ export default function Page() {
 						Meet Our Team{' '}
 					</h1>
 				</div>
-				<div className='flex flex-row gap-2 items-center'>
-					<div className='basis-1/3 rounded bg-white shadow-lg'>
+				<div className='flex flex-row gap-4 items-center'>
+					<div className='flex flex-col basis-1/3 rounded-xl bg-white shadow-lg p-8'>
+							<Image className='rounded-full self-center'width= '170' height='170' alt='gambar' src='https://avatars.githubusercontent.com/u/60810604?'/>
 						1
 					</div>
-					<div className='basis-1/3 rounded bg-white shadow-lg'>
+					<div className='flex flex-col basis-1/3 rounded-xl bg-white shadow-lg p-8'>
 						2
 					</div>
-					<div className='basis-1/3 rounded bg-white shadow-lg'>
+					<div className='flex flex-col basis-1/3 rounded-xl bg-white shadow-lg p-8'>
 						3
 					</div>
 				</div>
