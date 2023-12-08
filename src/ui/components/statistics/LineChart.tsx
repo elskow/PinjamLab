@@ -1,10 +1,8 @@
-import { useState } from 'react'
 import { Line } from 'react-chartjs-2'
 import {
-	Chart as ChartjS,
+	Chart as ChartJS,
 	CategoryScale,
 	LinearScale,
-	BarElement,
 	Title,
 	Tooltip,
 	Legend,
@@ -12,10 +10,9 @@ import {
 	LineElement,
 } from 'chart.js'
 
-ChartjS.register(
+ChartJS.register(
 	CategoryScale,
 	LinearScale,
-	BarElement,
 	Title,
 	Tooltip,
 	Legend,
@@ -23,39 +20,96 @@ ChartjS.register(
 	LineElement,
 )
 
-export default function LineChart() {
-	const [chartDataAcepted] = useState({
-		labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-		datasets: [
-			{
-				label: 'Acepted',
-				data: [10, 5, 8, 8, 9, 10],
-				fill: false,
-				backgroundColor: 'rgb(255, 99, 132)',
-				borderColor: 'rgba(255, 99, 132)',
-			},
-		],
-	})
+interface Data {
+	month: string[]
+	accepted?: number[]
+	rejected?: number[]
+	pending?: number[]
+}
 
-	const [chartDataRequest] = useState({
-		labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-		datasets: [
-			{
-				label: 'Requested',
-				data: [12, 10, 9, 10, 12, 15],
-				fill: false,
-				borderColor: 'rgb(54, 162, 235)',
-				backgroundColor: 'rgb(54, 162, 235)',
-			},
-		],
+interface LineChartProps {
+	data: Data
+	className?: string
+}
+
+const labels = ['Accepted', 'Rejected', 'Pending']
+const colors = [
+	'rgba(75, 192, 192, 0.2)',
+	'rgba(255, 99, 132, 0.2)',
+	'rgba(255, 205, 86, 0.2)',
+]
+const borderColors = [
+	'rgb(75, 192, 192)',
+	'rgb(255, 99, 132)',
+	'rgb(255, 205, 86)',
+]
+
+export default function LineChart({ data, className }: LineChartProps) {
+	const datasets = labels.map((label, i) => {
+		const key = label.toLowerCase() as keyof Data
+		return {
+			label,
+			data: data[key],
+			fill: true,
+			backgroundColor: colors[i],
+			borderColor: borderColors[i],
+			tension: 0.3,
+			borderWidth: 2,
+		}
 	})
 
 	return (
-		<div>
-			<div className='flex md:flex-row flex-col md:w-1/2 w-full'>
-				<Line data={chartDataAcepted} />
-				<Line data={chartDataRequest} />
-			</div>
+		<div className={`w-3/4 h-3/4 ${className}`}>
+			<Line
+				data={{ labels: data.month, datasets }}
+				options={{
+					responsive: true,
+					interaction: {
+						mode: 'nearest',
+						axis: 'x',
+						intersect: false,
+					},
+					plugins: {
+						legend: {
+							position: 'bottom',
+							labels: {
+								font: { size: 10, weight: 'bold' },
+								color: '#333',
+								padding: 10,
+								sort: (a, b) =>
+									labels.indexOf(a.text) -
+									labels.indexOf(b.text),
+								usePointStyle: true,
+							},
+							align: 'end',
+							maxHeight: 50,
+							onClick: () => {},
+							maxWidth: 100,
+						},
+						tooltip: {
+							backgroundColor: 'rgba(0,0,0,0.7)',
+							titleColor: '#fff',
+							bodyColor: '#fff',
+							footerColor: '#fff',
+						},
+					},
+					scales: {
+						x: {
+							grid: { color: '#ddd' },
+							ticks: { color: '#333' },
+						},
+						y: {
+							grid: { color: '#ddd' },
+							ticks: { color: '#333' },
+						},
+					},
+					hover: {
+						mode: 'nearest',
+						intersect: true,
+						axis: 'x',
+					},
+				}}
+			/>
 		</div>
 	)
 }
