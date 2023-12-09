@@ -1,5 +1,7 @@
 import { FaCheckCircle, FaTimesCircle, FaHourglassHalf } from 'react-icons/fa'
 
+type ApprovedStatus = 'Accepted' | 'Rejected' | 'Pending'
+
 interface DataRequest {
 	id: number
 	nama_pemohon: string
@@ -7,7 +9,7 @@ interface DataRequest {
 	tanggal: string
 	rentang_waktu: string
 	dosen_penanggung_jawab: string
-	approved: 'Accepted' | 'Rejected' | 'Pending'
+	approved: ApprovedStatus
 }
 
 interface TableRowProps {
