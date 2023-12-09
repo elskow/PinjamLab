@@ -59,11 +59,12 @@ export default function LineChart({ data, className }: LineChartProps) {
 	})
 
 	return (
-		<div className={`w-3/4 h-3/4 ${className}`}>
+		<>
 			<Line
 				data={{ labels: data.month, datasets }}
 				options={{
 					responsive: true,
+					font: { size: 10, weight: 'bold' },
 					interaction: {
 						mode: 'nearest',
 						axis: 'x',
@@ -82,8 +83,6 @@ export default function LineChart({ data, className }: LineChartProps) {
 								usePointStyle: true,
 							},
 							align: 'end',
-							maxHeight: 50,
-							maxWidth: 100,
 						},
 						tooltip: {
 							backgroundColor: 'rgba(0,0,0,0.7)',
@@ -108,7 +107,8 @@ export default function LineChart({ data, className }: LineChartProps) {
 						axis: 'x',
 					},
 				}}
+				className={`${className}`}
 			/>
-		</div>
+		</>
 	)
 }
