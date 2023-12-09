@@ -16,7 +16,7 @@ export default function Page() {
 					</h1>
 				</div>
 				<div className='flex flex-row gap-4 items-center'>
-					<div className='flex flex-col basis-1/3 rounded-xl bg-white shadow-lg p-8'>
+					<div className='flex flex-col basis-1/3 rounded-xl bg-white shadow-lg p-8 space-y-4'>
 						<Image
 							className='rounded-full self-center'
 							width='170'
@@ -24,9 +24,12 @@ export default function Page() {
 							alt='gambar'
 							src='https://avatars.githubusercontent.com/u/60810604?'
 						/>
-						1
+						<div className='flex flex-col items-center gap-2'>
+							<h1 className='text-bold text-black'>Naufal Farras Pratama</h1>
+							<p>"All in Anies no 1"</p>
+						</div>
 					</div>
-					<div className='flex flex-col basis-1/3 rounded-xl bg-white shadow-lg p-8'>
+					<div className='flex flex-col basis-1/3 rounded-xl bg-white shadow-lg p-8 space-y-4'>
 						<Image
 							className='rounded-full self-center'
 							width='170'
@@ -34,9 +37,12 @@ export default function Page() {
 							alt='gambar'
 							src='https://avatars.githubusercontent.com/u/103118501'
 						/>
-						2
+						<div className='flex flex-col items-center gap-2'>
+							<h1 className='text-bold text-black'>Helmy LuqmanulHakim</h1>
+							<p>"Coblos no 2"</p>
+						</div>
 					</div>
-					<div className='flex flex-col basis-1/3 rounded-xl bg-white shadow-lg p-8'>
+					<div className='flex flex-col basis-1/3 rounded-xl bg-white shadow-lg p-8 space-y-4'>
 						<Image
 							className='rounded-full self-center'
 							width='170'
@@ -44,7 +50,10 @@ export default function Page() {
 							alt='gambar'
 							src='https://avatars.githubusercontent.com/u/117156042'
 						/>
-						3
+						<div className='flex flex-col items-center gap-2'>
+							<h1 className='text-bold text-black'>Ahmd Mufahras Li Assardew</h1>
+							<p>"Coblos no 3"</p>
+						</div>
 					</div>
 				</div>
 			</div>
