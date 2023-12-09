@@ -1,4 +1,4 @@
-import CreateBorrowForm from '@/ui/components/borrow/create-borrow-form'
+import LabRequestForm from '@/ui/components/borrow/LabRequestForm'
 import MainLayout from '@/ui/MainLayout'
 
 export default function Page() {
@@ -7,7 +7,7 @@ export default function Page() {
 			<h1 className='text-2xl font-semibold text-gray-900'>
 				Form Peminjaman Laboratorium
 			</h1>
-			<CreateBorrowForm />
+			<LabRequestForm className='flex justify-center mt-8' />
 		</MainLayout>
 	)
 }
