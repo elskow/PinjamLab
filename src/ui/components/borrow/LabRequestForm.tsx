@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form'
+import type { SubmitHandler } from 'react-hook-form'
 import Link from 'next/link'
 
 interface LabRequestData {
@@ -19,16 +20,16 @@ export default function LabRequestForm({ className }: LabRequestFormProps) {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm()
+	} = useForm<LabRequestData>()
 
-	const onSubmit = (data: LabRequestData) => {
+	const onSubmit: SubmitHandler<LabRequestData> = (data) => {
 		console.log(data)
 	}
 
 	return (
 		<div className={className}>
 			<form
-				onSubmit={handleSubmit(onSubmit as any)}
+				onSubmit={handleSubmit(onSubmit)}
 				className='flex flex-col md:w-1/2 space-y-4 bg-white p-8 rounded-lg shadow-lg'
 			>
 				<label className='text-lg font-semibold text-gray-700'>
