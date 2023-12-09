@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import * as Dialog from "@radix-ui/react-dialog"
+import * as Dialog from '@radix-ui/react-dialog'
 
 interface NewsItemProps {
 	title: string
@@ -34,10 +34,11 @@ const NewsItem = ({ title, description, image, href }: NewsItemProps) => {
 				</div>
 			</Dialog.Trigger>
 			<Dialog.Portal>
-				<Dialog.Overlay className='fixed blur-md'/>
-				<Dialog.Content className='fixed left-1/2 top-1/2 bg-white text-gray-900 rounded-md p-5' >Guten Morgen</Dialog.Content>
+				<Dialog.Overlay className='fixed blur-md' />
+				<Dialog.Content className='fixed left-1/2 top-1/2 bg-white text-gray-900 rounded-md p-5'>
+					Guten Morgen
+				</Dialog.Content>
 			</Dialog.Portal>
-
 		</Dialog.Root>
 	)
 }
