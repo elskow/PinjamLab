@@ -68,7 +68,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
 		</ul>
 	)
 
-	if (status !== 'loading') {
+	if (status === 'loading') {
 		return (
 			<div className='flex flex-grow items-center justify-center h-screen'>
 				<LoadingSpinner />
