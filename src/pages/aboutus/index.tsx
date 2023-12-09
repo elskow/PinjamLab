@@ -25,7 +25,9 @@ export default function Page() {
 							src='https://avatars.githubusercontent.com/u/60810604?'
 						/>
 						<div className='flex flex-col items-center gap-2'>
-							<h1 className='text-bold text-black'>Naufal Farras Pratama</h1>
+							<h1 className='text-bold text-black'>
+								Naufal Farras Pratama
+							</h1>
 							<p>"All in Anies no 1"</p>
 						</div>
 					</div>
@@ -38,7 +40,9 @@ export default function Page() {
 							src='https://avatars.githubusercontent.com/u/103118501'
 						/>
 						<div className='flex flex-col items-center gap-2'>
-							<h1 className='text-bold text-black'>Helmy LuqmanulHakim</h1>
+							<h1 className='text-bold text-black'>
+								Helmy LuqmanulHakim
+							</h1>
 							<p>"Coblos no 2"</p>
 						</div>
 					</div>
@@ -51,7 +55,9 @@ export default function Page() {
 							src='https://avatars.githubusercontent.com/u/117156042'
 						/>
 						<div className='flex flex-col items-center gap-2'>
-							<h1 className='text-bold text-black'>Ahmd Mufahras Li Assardew</h1>
+							<h1 className='text-bold text-black'>
+								Ahmd Mufahras Li Assardew
+							</h1>
 							<p>"Coblos no 3"</p>
 						</div>
 					</div>
