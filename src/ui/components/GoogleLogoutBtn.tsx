@@ -7,8 +7,8 @@ interface GoogleLogoutBtnProps {
 
 const GoogleLogoutBtn = ({ isMobile }: GoogleLogoutBtnProps) => {
 	const buttonClass = isMobile
-		? 'flex items-center justify-center space-x-2 bg-gradient-to-r from-purple-500 to-indigo-500 text-white px-4 py-2 rounded-md shadow-md hover:from-purple-600 hover:to-indigo-600 transition-colors transition duration-500 ease-in-out cursor-pointer text-sm'
-		: 'flex items-center justify-center space-x-2 bg-gradient-to-r from-purple-500 to-indigo-500 text-white px-6 py-2 rounded-full shadow-md hover:from-purple-600 hover:to-indigo-600 transition-colors transition duration-500 ease-in-out cursor-pointer'
+		? 'text-xs flex items-center justify-center space-x-2 bg-red-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-red-600 transition-colors transition duration-500 ease-in-out cursor-pointer text-sm'
+		: 'text-sm flex items-center justify-center space-x-2 bg-red-500 text-white px-6 py-2 rounded-md shadow-md hover:bg-red-600 transition-colors transition duration-500 ease-in-out cursor-pointer'
 
 	return (
 		<button onClick={() => signOut()} className={buttonClass}>

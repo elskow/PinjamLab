@@ -13,6 +13,8 @@ import {
 } from 'react-icons/fa'
 import { useSession, signOut } from 'next-auth/react'
 import GoogleLoginBtn from '@/ui/components/GoogleLoginBtn'
+import LoadingSpinner from '@/ui/components/LoadingSpinner'
+import GoogleLogoutBtn from './components/GoogleLogoutBtn'
 
 const navItems = [
 	{ label: 'Home', icon: <FaHome />, href: '/' },
@@ -67,7 +69,11 @@ const MainLayout = ({ children }: MainLayoutProps) => {
 	)
 
 	if (status === 'loading') {
-		return <div>Loading...</div>
+		return (
+			<div className='flex flex-grow items-center justify-center'>
+				<LoadingSpinner />
+			</div>
+		)
 	}
 
 	return (
@@ -81,15 +87,27 @@ const MainLayout = ({ children }: MainLayoutProps) => {
 						<FaBars className='text-white text-2xl' />
 					</button>
 					{session && (
-						<button
-							onClick={() => signOut()}
-							className='text-xs items-center justify-center space-x-2 bg-red-500 text-white px-6 py-2 rounded-full shadow-md hover:bg-red-600 transition-colors hidden md:flex'
-						>
-							<FaSignOutAlt className='text-xl' />
-							<span>Sign Out</span>
-						</button>
+						<div className='hidden md:flex items-center space-x-4'>
+							<GoogleLogoutBtn />
+						</div>
 					)}
 				</div>
+			</nav>
+			<nav
+				className={`md:hidden bg-white p-4 border-b border-gray-200 ${
+					isOpen ? 'block' : 'hidden'
+				}`}
+			>
+				<ul className='space-y-2 text-sm'>
+					{navItems.map((item) => (
+						<NavItem key={item.label} {...item} />
+					))}
+					{session && (
+						<div className='flex items-center justify-end'>
+							<GoogleLogoutBtn isMobile />
+						</div>
+					)}
+				</ul>
 			</nav>
 			{session ? (
 				<div className='flex flex-grow overflow-y-hidden'>
