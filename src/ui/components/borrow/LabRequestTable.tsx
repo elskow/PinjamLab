@@ -1,4 +1,4 @@
-import { FaCheckCircle, FaTimesCircle } from 'react-icons/fa'
+import { FaCheckCircle, FaTimesCircle, FaHourglassHalf } from 'react-icons/fa'
 
 interface DataRequest {
 	id: number
@@ -7,7 +7,7 @@ interface DataRequest {
 	tanggal: string
 	rentang_waktu: string
 	dosen_penanggung_jawab: string
-	approved: boolean
+	approved: 'Accepted' | 'Rejected' | 'Pending'
 }
 
 interface TableRowProps {
@@ -45,10 +45,12 @@ const TableRow: React.FC<TableRowProps> = ({ item, index }) => {
 			</td>
 			<td className='px-6 py-4 text-center whitespace-nowrap'>
 				<div className='text-sm text-gray-900 flex justify-center'>
-					{item.approved ? (
+					{item.approved === 'Accepted' ? (
 						<FaCheckCircle className='text-green-500' />
-					) : (
+					) : item.approved === 'Rejected' ? (
 						<FaTimesCircle className='text-red-500' />
+					) : (
+						<FaHourglassHalf className='text-yellow-500' />
 					)}
 				</div>
 			</td>

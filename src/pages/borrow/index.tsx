@@ -11,7 +11,7 @@ const data = [
 		tanggal: '2021-08-01',
 		rentang_waktu: '08:00 - 12:00',
 		dosen_penanggung_jawab: 'Dr. Surya',
-		approved: true,
+		approved: 'Accepted',
 	},
 	{
 		id: 2202,
@@ -20,7 +20,7 @@ const data = [
 		tanggal: '2021-08-02',
 		rentang_waktu: '13:00 - 15:00',
 		dosen_penanggung_jawab: 'Dr. Kukuh Wicaksono',
-		approved: false,
+		approved: 'Rejected',
 	},
 	{
 		id: 2203,
@@ -29,7 +29,7 @@ const data = [
 		tanggal: '2021-08-03',
 		rentang_waktu: '08:00 - 12:00',
 		dosen_penanggung_jawab: 'Dr. Surya',
-		approved: true,
+		approved: 'Pending',
 	},
 	{
 		id: 2204,
@@ -38,7 +38,7 @@ const data = [
 		tanggal: '2021-08-04',
 		rentang_waktu: '08:00 - 12:00',
 		dosen_penanggung_jawab: 'Dr. Surya',
-		approved: true,
+		approved: 'Pending',
 	},
 	{
 		id: 2205,
@@ -47,7 +47,7 @@ const data = [
 		tanggal: '2021-08-05',
 		rentang_waktu: '13:00 - 15:00',
 		dosen_penanggung_jawab: 'Dr. Kukuh Wicaksono',
-		approved: false,
+		approved: 'Pending',
 	},
 	{
 		id: 2206,
@@ -56,7 +56,7 @@ const data = [
 		tanggal: '2021-08-06',
 		rentang_waktu: '08:00 - 12:00',
 		dosen_penanggung_jawab: 'Dr. Surya',
-		approved: true,
+		approved: 'Pending',
 	},
 	{
 		id: 2207,
@@ -65,7 +65,7 @@ const data = [
 		tanggal: '2021-08-07',
 		rentang_waktu: '08:00 - 12:00',
 		dosen_penanggung_jawab: 'Dr. Surya',
-		approved: true,
+		approved: 'Pending',
 	},
 ]
 
