@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import * as Dialog from '@radix-ui/react-dialog'
 
 interface NewsItemProps {
 	title: string
