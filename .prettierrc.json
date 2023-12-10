@@ -4,5 +4,6 @@
 	"semi": false,
 	"tabWidth": 4,
 	"jsxSingleQuote": true,
-	"singleQuote": true
+	"singleQuote": true,
+	"plugins": ["prettier-plugin-tailwindcss"]
 }
