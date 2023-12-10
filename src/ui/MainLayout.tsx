@@ -113,7 +113,12 @@ const MainLayout = ({ children }: MainLayoutProps) => {
 				</nav>
 				<ul
 					className={`md:hidden bg-white p-4 border-b border-gray-200 space-y-2 text-sm sticky top-0 z-50 ${
-						isOpen ? 'block' : 'hidden'} ${isScrolling && isOpen && 'shadow-md transition-shadow duration-300' }`}
+						isOpen ? 'block' : 'hidden'
+					} ${
+						isScrolling &&
+						isOpen &&
+						'shadow-md transition-shadow duration-300'
+					}`}
 				>
 					{navItems.map((item) => (
 						<NavItem key={item.label} {...item} />

@@ -16,6 +16,6 @@ export default createNextApiHandler({
 							error.message
 						}`,
 					)
-			  }
+				}
 			: undefined,
 })
