@@ -8,7 +8,6 @@ import Link from 'next/link'
 import { ActivityTypes } from '@/utils/types'
 import type { ActivityType } from '@/utils/types'
 
-// Define the types for the form data and props
 interface LabRequestData {
 	id: number
 	email_peminjam: string
