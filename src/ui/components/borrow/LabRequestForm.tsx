@@ -1,86 +1,134 @@
+import { useSession } from 'next-auth/react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import type { SubmitHandler } from 'react-hook-form'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 import Link from 'next/link'
+import { ActivityTypes } from '@/utils/types'
+import type { ActivityType } from '@/utils/types'
 
+// Define the types for the form data and props
 interface LabRequestData {
-	nama_pemohon: string
-	jenis_kegiatan: string
-	tanggal: string
-	rentang_waktu: string
-	dosen_penanggung_jawab: string
-	description: string
+    id: number
+	email_peminjam: string
+    nama_peminjam: string
+    jenis_kegiatan: ActivityType
+    nama_kegiatan: string
+    tanggal: string
+    start_time: string
+    end_time: string
+    dosen_penanggung_jawab: string
 }
 
 interface LabRequestFormProps {
-	className?: string
+    className?: string
 }
 
+// Define the form component
 export default function LabRequestForm({ className }: LabRequestFormProps) {
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-	} = useForm<LabRequestData>()
+	const { data: session } = useSession()
+    const { register, handleSubmit, formState: { errors } } = useForm<LabRequestData>()
+    const [startDate, setStartDate] = useState(new Date())
 
-	const onSubmit: SubmitHandler<LabRequestData> = (data) => {
-		console.log(data)
-	}
+    const onSubmit: SubmitHandler<LabRequestData> = (data) => console.log(data)
 
-	return (
-		<div className={className}>
-			<form
-				onSubmit={handleSubmit(onSubmit)}
-				className='flex flex-col md:w-1/2 space-y-4 bg-white p-8 rounded-lg shadow-lg'
-			>
+    return (
+        <div className={`${className} flex justify-center items-center h-screen bg-gray-100 my-10`}>
+            <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col w-full  md:w-3/5 space-y-4 bg-white p-8 rounded-lg shadow-lg'>
 				<label className='text-lg font-semibold text-gray-700'>
-					Nama Pemohon
+					Nama Peminjam
 				</label>
 				<input
-					{...register('nama_pemohon', { required: true })}
+					{...register('nama_peminjam', { required: true })}
 					className='input input-bordered bg-white text-gray-900'
 					type='text'
-					placeholder='Nama Pemohon'
+					placeholder='Nama Peminjam'
 				/>
-				{errors.nama_pemohon && (
+				<label className='text-lg font-semibold text-gray-700'>
+                    Email Peminjam
+                </label>
+                <input
+                    {...register('email_peminjam')}
+                    className='input input-bordered bg-gray-50 input-disabled'
+                    type='email'
+                    value={session?.user?.email ?? ''}
+                    readOnly
+                />
+				<label className='text-lg font-semibold text-gray-700'>
+					Jenis Kegiatan
+				</label>
+				<select
+					{...register('jenis_kegiatan', { required: true })}
+					className='input input-bordered bg-white text-gray-900'
+				>
+					<option value=''>Select an activity type</option>
+					{ActivityTypes.map((activityType, index) => (
+						<option key={index} value={activityType}>
+							{activityType}
+						</option>
+					))}
+				</select>
+				{errors.jenis_kegiatan && (
 					<p className='text-red-500'>This field is required</p>
 				)}
 
 				<label className='text-lg font-semibold text-gray-700'>
-					Jenis Kegiatan
+					Nama Kegiatan
 				</label>
 				<input
-					{...register('jenis_kegiatan', { required: true })}
+					{...register('nama_kegiatan', { required: true })}
 					className='input input-bordered bg-white text-gray-900'
 					type='text'
-					placeholder='Jenis Kegiatan'
+					placeholder='Nama Kegiatan'
 				/>
-				{errors.jenis_kegiatan && (
+				{errors.nama_kegiatan && (
 					<p className='text-red-500'>This field is required</p>
 				)}
 
 				<label className='text-lg font-semibold text-gray-700'>
 					Tanggal
 				</label>
-				<input
-					{...register('tanggal', { required: true })}
-					className='input input-bordered bg-white text-gray-900'
-					type='date'
-					placeholder='Tanggal'
+				<DatePicker
+					selected={startDate}
+					onChange={(date: Date) => setStartDate(date)}
+					dateFormat='dd/MM/yyyy'
+					className='input input-bordered bg-white text-gray-900 w-full'
+					startDate={new Date()}
+					minDate={new Date()}
+					placeholderText='Tanggal'
 				/>
 				{errors.tanggal && (
 					<p className='text-red-500'>This field is required</p>
 				)}
 
 				<label className='text-lg font-semibold text-gray-700'>
-					Rentang Waktu
+					Start Time
 				</label>
 				<input
-					{...register('rentang_waktu', { required: true })}
+					{...register('start_time', { required: true })}
 					className='input input-bordered bg-white text-gray-900'
-					type='text'
-					placeholder='Rentang Waktu'
+					type='time'
+					min='07:00'
+					max='17:00'
+					step='1800'
 				/>
-				{errors.rentang_waktu && (
+				{errors.start_time && (
+					<p className='text-red-500'>This field is required</p>
+				)}
+
+				<label className='text-lg font-semibold text-gray-700'>
+					End Time
+				</label>
+				<input
+					{...register('end_time', { required: true })}
+					className='input input-bordered bg-white text-gray-900'
+					type='time'
+					min='07:00'
+					max='17:00'
+					step='1800'
+				/>
+				{errors.end_time && (
 					<p className='text-red-500'>This field is required</p>
 				)}
 
@@ -94,18 +142,6 @@ export default function LabRequestForm({ className }: LabRequestFormProps) {
 					placeholder='Dosen Penanggung Jawab'
 				/>
 				{errors.dosen_penanggung_jawab && (
-					<p className='text-red-500'>This field is required</p>
-				)}
-
-				<label className='text-lg font-semibold text-gray-700'>
-					Description
-				</label>
-				<textarea
-					{...register('description', { required: true })}
-					className='textarea textarea-bordered bg-white text-gray-900'
-					placeholder='Description'
-				/>
-				{errors.description && (
 					<p className='text-red-500'>This field is required</p>
 				)}
 
