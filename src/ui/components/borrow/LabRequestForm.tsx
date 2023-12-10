@@ -10,32 +10,41 @@ import type { ActivityType } from '@/utils/types'
 
 // Define the types for the form data and props
 interface LabRequestData {
-    id: number
+	id: number
 	email_peminjam: string
-    nama_peminjam: string
-    jenis_kegiatan: ActivityType
-    nama_kegiatan: string
-    tanggal: string
-    start_time: string
-    end_time: string
-    dosen_penanggung_jawab: string
+	nama_peminjam: string
+	jenis_kegiatan: ActivityType
+	nama_kegiatan: string
+	tanggal: string
+	start_time: string
+	end_time: string
+	dosen_penanggung_jawab: string
 }
 
 interface LabRequestFormProps {
-    className?: string
+	className?: string
 }
 
 // Define the form component
 export default function LabRequestForm({ className }: LabRequestFormProps) {
 	const { data: session } = useSession()
-    const { register, handleSubmit, formState: { errors } } = useForm<LabRequestData>()
-    const [startDate, setStartDate] = useState(new Date())
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<LabRequestData>()
+	const [startDate, setStartDate] = useState(new Date())
 
-    const onSubmit: SubmitHandler<LabRequestData> = (data) => console.log(data)
+	const onSubmit: SubmitHandler<LabRequestData> = (data) => console.log(data)
 
-    return (
-        <div className={`${className} flex justify-center items-center h-screen bg-gray-100 my-10`}>
-            <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col w-full  md:w-3/5 space-y-4 bg-white p-8 rounded-lg shadow-lg'>
+	return (
+		<div
+			className={`${className} flex justify-center items-center h-screen bg-gray-100 my-10`}
+		>
+			<form
+				onSubmit={handleSubmit(onSubmit)}
+				className='flex flex-col w-full  md:w-3/5 space-y-4 bg-white p-8 rounded-lg shadow-lg'
+			>
 				<label className='text-lg font-semibold text-gray-700'>
 					Nama Peminjam
 				</label>
@@ -46,15 +55,15 @@ export default function LabRequestForm({ className }: LabRequestFormProps) {
 					placeholder='Nama Peminjam'
 				/>
 				<label className='text-lg font-semibold text-gray-700'>
-                    Email Peminjam
-                </label>
-                <input
-                    {...register('email_peminjam')}
-                    className='input input-bordered bg-gray-50 input-disabled'
-                    type='email'
-                    value={session?.user?.email ?? ''}
-                    readOnly
-                />
+					Email Peminjam
+				</label>
+				<input
+					{...register('email_peminjam')}
+					className='input input-bordered bg-gray-50 input-disabled'
+					type='email'
+					value={session?.user?.email ?? ''}
+					readOnly
+				/>
 				<label className='text-lg font-semibold text-gray-700'>
 					Jenis Kegiatan
 				</label>
