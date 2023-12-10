@@ -18,7 +18,7 @@ interface TableRowProps {
 }
 
 const TableRow: React.FC<TableRowProps> = ({ item, index }) => {
-	const rowClass = item.approved ? '' : 'bg-red-50'
+	const rowClass = item.approved === 'Accepted' ? '' : 'bg-red-50'
 	return (
 		<tr className={`hover:bg-gray-100 ${rowClass}`}>
 			<td className='px-6 py-4 text-center whitespace-nowrap'>
