@@ -4,17 +4,17 @@ interface NewsItemProps {
 	title: string
 	description: string
 	image: string
-	key: number
+	id: string
 }
 
-const NewsItem = ({ title, description, image, key }: NewsItemProps) => {
+const NewsItem = ({ title, description, image, id }: NewsItemProps) => {
 	return (
 		<div className='flex flex-row hover:shadow-lg'>
 			<button
 				onClick={() =>
 					(
 						document.getElementById(
-							String(title),
+							id,
 						) as HTMLDialogElement
 					).showModal()
 				}
@@ -38,7 +38,7 @@ const NewsItem = ({ title, description, image, key }: NewsItemProps) => {
 					</p>
 				</div>
 			</button>
-			<dialog id={String(title)} className='modal glass'>
+			<dialog id={id} className='modal glass'>
 				<div className='modal-box bg-white w-11/12 max-w-5xl'>
 					<h3 className='font-bold text-lg text-gray-900'>{title}</h3>
 					<p className='py-4 text-gray-600 text-sm'>{description}</p>

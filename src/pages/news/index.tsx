@@ -1,9 +1,10 @@
 import MainLayout from '@/ui/MainLayout'
 import NewsItem from '@/ui/components/news/NewsItem'
 
+
 const dummyDataNews = [
 	{
-		id: 1,
+		id: '1',
 		date: 'Desember 6',
 		imageSrc: 'https://picsum.photos/200',
 		title: 'Pengumuman',
@@ -12,7 +13,7 @@ const dummyDataNews = [
 		href: '/news/1',
 	},
 	{
-		id: 2,
+		id: '2',
 		date: 'Desember 2',
 		imageSrc:
 			'https://1.bp.blogspot.com/-Q86XGVJahug/Xm-aQfgtuMI/AAAAAAAAAcA/qqPQeihI39EbG2N87jG65xfnCdvF85-WQCLcBGAsYHQ/s320/docker.png',
@@ -22,7 +23,7 @@ const dummyDataNews = [
 		href: '/news/2',
 	},
 	{
-		id: 3,
+		id: '3',
 		date: 'November 29',
 		imageSrc:
 			'https://cdn.wanderer.moe/genshin-impact/emotes/faruzan-3.png',
@@ -32,7 +33,7 @@ const dummyDataNews = [
 		href: '/news/3',
 	},
 	{
-		id: 4,
+		id: '4',
 		date: 'November 29',
 		imageSrc:
 			'https://www.elhuertoemporio.cl/wp-content/uploads/Mani-tostado-sin-sal-oferta-kilo-El-Huerto.png',
@@ -42,7 +43,7 @@ const dummyDataNews = [
 		href: '/news/4',
 	},
 	{
-		id: 5,
+		id: '5',
 		date: 'November 28',
 		imageSrc:
 			'https://www.elhuertoemporio.cl/wp-content/uploads/Mani-tostado-sin-sal-oferta-kilo-El-Huerto.png',
@@ -52,7 +53,7 @@ const dummyDataNews = [
 		href: '/news/5',
 	},
 	{
-		id: 6,
+		id: '6',
 		date: 'November 27',
 		imageSrc:
 			'https://www.elhuertoemporio.cl/wp-content/uploads/Mani-tostado-sin-sal-oferta-kilo-El-Huerto.png',
@@ -63,9 +64,8 @@ const dummyDataNews = [
 	},
 ]
 interface NewsItemProps {
-	key: number
 	date: string
-	news: { title: string; description: string; image: string; href: string }[]
+	news: { id: string; title: string; description: string; image: string; href: string }[]
 }
 
 export default function Page() {
@@ -77,12 +77,14 @@ export default function Page() {
 				description: curr.description,
 				image: curr.imageSrc,
 				href: curr.href,
+				id: curr.id
 			}
+			console.log((curr.id));
 			const existingDate = acc.find((item) => item.date === date)
 			if (existingDate) {
 				existingDate.news.push(newsItem)
 			} else {
-				acc.push({ key: curr.id, date: date, news: [newsItem] })
+				acc.push({ date: date, news: [newsItem] })
 			}
 			return acc
 		},
@@ -97,7 +99,6 @@ export default function Page() {
 				<div className='flex flex-col gap-6 my-2'>
 					{groupedNews.map((news) => (
 						<NewsItem
-							key={news.key}
 							date={news.date}
 							news={news.news}
 						/>
