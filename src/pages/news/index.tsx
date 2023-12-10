@@ -1,7 +1,6 @@
 import MainLayout from '@/ui/MainLayout'
 import NewsItem from '@/ui/components/news/NewsItem'
 
-
 const dummyDataNews = [
 	{
 		id: '1',
@@ -65,7 +64,13 @@ const dummyDataNews = [
 ]
 interface NewsItemProps {
 	date: string
-	news: { id: string; title: string; description: string; image: string; href: string }[]
+	news: {
+		id: string
+		title: string
+		description: string
+		image: string
+		href: string
+	}[]
 }
 
 export default function Page() {
@@ -77,9 +82,9 @@ export default function Page() {
 				description: curr.description,
 				image: curr.imageSrc,
 				href: curr.href,
-				id: curr.id
+				id: curr.id,
 			}
-			console.log((curr.id));
+			console.log(curr.id)
 			const existingDate = acc.find((item) => item.date === date)
 			if (existingDate) {
 				existingDate.news.push(newsItem)
@@ -98,10 +103,7 @@ export default function Page() {
 				</h1>
 				<div className='flex flex-col gap-6 my-2'>
 					{groupedNews.map((news) => (
-						<NewsItem
-							date={news.date}
-							news={news.news}
-						/>
+						<NewsItem date={news.date} news={news.news} />
 					))}
 				</div>
 			</div>

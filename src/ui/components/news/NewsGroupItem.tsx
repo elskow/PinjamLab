@@ -13,9 +13,7 @@ const NewsItem = ({ title, description, image, id }: NewsItemProps) => {
 			<button
 				onClick={() =>
 					(
-						document.getElementById(
-							id,
-						) as HTMLDialogElement
+						document.getElementById(id) as HTMLDialogElement
 					).showModal()
 				}
 				className='flex shadow-md sm:flex-row flex-col rounded-md flex-grow gap-2 p-6 bg-white space-x-4 items-center'
