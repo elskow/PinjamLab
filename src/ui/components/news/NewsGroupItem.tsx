@@ -7,7 +7,6 @@ interface NewsItemProps {
 	key: number
 }
 
-
 const NewsItem = ({ title, description, image, key }: NewsItemProps) => {
 	return (
 		<div className='flex flex-row hover:shadow-lg'>
@@ -42,9 +41,7 @@ const NewsItem = ({ title, description, image, key }: NewsItemProps) => {
 			<dialog id={String(title)} className='modal glass'>
 				<div className='modal-box bg-white w-11/12 max-w-5xl'>
 					<h3 className='font-bold text-lg text-gray-900'>{title}</h3>
-					<p className='py-4 text-gray-600 text-sm'>
-						{description}
-					</p>
+					<p className='py-4 text-gray-600 text-sm'>{description}</p>
 				</div>
 				<form method='dialog' className='modal-backdrop'>
 					<button>close</button>
