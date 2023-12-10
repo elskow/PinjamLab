@@ -35,7 +35,7 @@ const NewsItem = ({ title, description, image, href }: NewsItemProps) => {
 				</div>
 			</button>
 			<dialog id='my_modal_2' className='modal'>
-				<div className='modal-box'>
+				<div className='modal-box vg-white'>
 					<h3 className='font-bold text-lg text-gray-900'>Hello!</h3>
 					<p className='py-4 text-gray-600 text-sm'>
 						Press ESC key or click outside to close
