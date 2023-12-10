@@ -12,7 +12,11 @@ const NewsItem = ({ title, description, image, href }: NewsItemProps) => {
 		<div className='flex flex-row hover:shadow-lg'>
 			<button
 				onClick={() =>
-					(document.getElementById('my_modal_2') as HTMLDialogElement).showModal()
+					(
+						document.getElementById(
+							'my_modal_2',
+						) as HTMLDialogElement
+					).showModal()
 				}
 				className='flex shadow-md sm:flex-row flex-col rounded-md flex-grow gap-2 p-6 bg-white space-x-4 items-center'
 			>
