@@ -29,21 +29,21 @@ const dataTeam = [
 export default function Page() {
 	return (
 		<MainLayout>
-			<div className='flex flex-col mb-4 p-10 space-y-10'>
-				<div className='flex flex-col gap-2 items-center justify-center'>
-					<h1 className='text-3xl font-bold text-center text-black'>
+			<div className='mb-4 flex flex-col space-y-10 p-10'>
+				<div className='flex flex-col items-center justify-center gap-2'>
+					<h1 className='text-center text-3xl font-bold text-black'>
 						Meet Our Team{' '}
 					</h1>
 				</div>
-				<div className='lg:flex md:flex-wrap md:flex grid grid-cols-1  gap-4 items-center justify-center'>
+				<div className='grid grid-cols-1 items-center justify-center gap-4  md:flex md:flex-wrap lg:flex'>
 					{dataTeam.map((team, index) => (
 						<Link key={index} href={team.link}>
 							<div
 								key={index}
-								className='flex flex-col basis-1/3 rounded-xl bg-white shadow-lg p-8 space-y-4'
+								className='flex basis-1/3 flex-col space-y-4 rounded-xl bg-white p-8 shadow-lg'
 							>
 								<Image
-									className='rounded-full self-center'
+									className='self-center rounded-full'
 									width='170'
 									height='170'
 									alt='gambar'

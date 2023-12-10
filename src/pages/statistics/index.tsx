@@ -23,11 +23,11 @@ const data = {
 export default function Page() {
 	return (
 		<MainLayout>
-			<div className='md:px-10 m-4'>
+			<div className='m-4 md:px-10'>
 				<h1 className='text-2xl font-semibold text-gray-900'>
 					Statistik Peminjaman Laboratorium
 				</h1>
-				<LineChart data={data} className='mt-20 mx-auto w-full' />
+				<LineChart data={data} className='mx-auto mt-20 w-full' />
 			</div>
 		</MainLayout>
 	)

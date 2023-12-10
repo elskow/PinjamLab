@@ -52,33 +52,33 @@ const TableRow: React.FC<TableRowProps> = ({ item, index }) => {
 				: 'bg-yellow-50'
 	return (
 		<tr
-			className={`hover:bg-zinc-50 ${rowClass} hover:shadow-lg hover:rounded-lg transition duration-200 hover:cursor-pointer ease-in-out`}
+			className={`hover:bg-zinc-50 ${rowClass} transition duration-200 ease-in-out hover:cursor-pointer hover:rounded-lg hover:shadow-lg`}
 		>
-			<td className='px-6 py-4 text-center whitespace-nowrap'>
+			<td className='whitespace-nowrap px-6 py-4 text-center'>
 				<div className='text-sm text-gray-900'>{index + 1}</div>
 			</td>
-			<td className='px-6 py-4 text-center whitespace-nowrap'>
+			<td className='whitespace-nowrap px-6 py-4 text-center'>
 				<div className='text-sm text-gray-900'>
 					{item.jenis_kegiatan}
 				</div>
 			</td>
-			<td className='px-6 py-4 text-center whitespace-nowrap'>
+			<td className='whitespace-nowrap px-6 py-4 text-center'>
 				<div className='text-sm text-gray-900'>
 					{item.nama_kegiatan}
 				</div>
 			</td>
-			<td className='px-6 py-4 text-center whitespace-nowrap'>
+			<td className='whitespace-nowrap px-6 py-4 text-center'>
 				<div className='text-sm text-gray-900'>
 					{formattedDateTimeRange}
 				</div>
 			</td>
-			<td className='px-6 py-4 text-center whitespace-nowrap'>
+			<td className='whitespace-nowrap px-6 py-4 text-center'>
 				<div className='text-sm text-gray-900'>
 					{item.dosen_penanggung_jawab}
 				</div>
 			</td>
-			<td className='px-6 py-4 text-center whitespace-nowrap'>
-				<div className='text-sm text-gray-900 flex justify-center'>
+			<td className='whitespace-nowrap px-6 py-4 text-center'>
+				<div className='flex justify-center text-sm text-gray-900'>
 					{item.approved === 'Accepted' ? (
 						<FaCheckCircle className='text-green-500' />
 					) : item.approved === 'Rejected' ? (
@@ -88,8 +88,8 @@ const TableRow: React.FC<TableRowProps> = ({ item, index }) => {
 					)}
 				</div>
 			</td>
-			<td className='px-6 py-4 text-center whitespace-nowrap'>
-				<div className='text-sm flex justify-center'>
+			<td className='whitespace-nowrap px-6 py-4 text-center'>
+				<div className='flex justify-center text-sm'>
 					{item.approved === 'Pending' ? (
 						<FaTimes className='text-red-500' />
 					) : (
@@ -134,14 +134,14 @@ export default function LabRequestTable({
 							<th
 								key={index}
 								scope='col'
-								className='px-6 py-7 text-center text-xs font-bold text-white uppercase tracking-wider'
+								className='px-6 py-7 text-center text-xs font-bold uppercase tracking-wider text-white'
 							>
 								{header}
 							</th>
 						))}
 					</tr>
 				</thead>
-				<tbody className='bg-white divide-y divide-gray-200'>
+				<tbody className='divide-y divide-gray-200 bg-white'>
 					{data.map((item, index) => (
 						<TableRow key={index} item={item} index={index} />
 					))}

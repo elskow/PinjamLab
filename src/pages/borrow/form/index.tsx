@@ -7,7 +7,7 @@ export default function Page() {
 			<h1 className='text-2xl font-semibold text-gray-900'>
 				Form Peminjaman Laboratorium
 			</h1>
-			<LabRequestForm className='flex justify-center mt-8' />
+			<LabRequestForm className='mt-8 flex justify-center' />
 		</MainLayout>
 	)
 }

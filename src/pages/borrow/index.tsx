@@ -80,25 +80,25 @@ const data = [
 export default function Page() {
 	return (
 		<MainLayout>
-			<div className='md:px-10 m-4'>
-				<h1 className='text-2xl font-semibold mb-6 text-gray-900'>
+			<div className='m-4 md:px-10'>
+				<h1 className='mb-6 text-2xl font-semibold text-gray-900'>
 					Peminjaman Laboratorium
 				</h1>
-				<div className='flex items-center justify-between bg-white p-3 shadow-sm rounded-lg mb-6'>
+				<div className='mb-6 flex items-center justify-between rounded-lg bg-white p-3 shadow-sm'>
 					<input
 						type='text'
 						placeholder='Search...'
-						className='flex-grow outline-none px-4 bg-white text-gray-900'
+						className='flex-grow bg-white px-4 text-gray-900 outline-none'
 					/>
 					<Link href='/borrow/form'>
-						<p className=' px-3 py-3 rounded-md bg-blue-500 text-white'>
+						<p className=' rounded-md bg-blue-500 px-3 py-3 text-white'>
 							<FaPlus />
 						</p>
 					</Link>
 				</div>
 				<LabRequestTable
 					data={data}
-					className='flex flex-col space-y-4 overflow-x-auto align-middle min-w-full shadow-lg overflow-hidden border-b border-gray-200 rounded-lg'
+					className='flex min-w-full flex-col space-y-4 overflow-hidden overflow-x-auto rounded-lg border-b border-gray-200 align-middle shadow-lg'
 				/>
 			</div>
 		</MainLayout>

@@ -57,12 +57,12 @@ export default function Home() {
 	return (
 		<MainLayout>
 			<div className='container px-4'>
-				<header className='bg-gradient-to-r from-gray-500 to-blue-500 p-10 rounded-lg mb-4 text-white shadow-lg'>
+				<header className='mb-4 rounded-lg bg-gradient-to-r from-gray-500 to-blue-500 p-10 text-white shadow-lg'>
 					<div className='flex flex-col items-center justify-center space-y-4'>
-						<p className='text-sm text-center'>
+						<p className='text-center text-sm'>
 							{dateTime || getDateTime()}
 						</p>
-						<h1 className='text-3xl font-bold text-center'>
+						<h1 className='text-center text-3xl font-bold'>
 							Selamat Datang di PinjamLab
 						</h1>
 						<p className='text-center'>
@@ -71,7 +71,7 @@ export default function Home() {
 						{AvailableStatus({ isUsed })}
 					</div>
 				</header>
-				<main className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
+				<main className='grid grid-cols-1 gap-4 sm:grid-cols-2'>
 					{OverviewSchedule({ schedule: dummyDataSchedule })}
 
 					{OverviewNews({ news: dummyDataNews })}

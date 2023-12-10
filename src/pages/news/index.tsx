@@ -97,11 +97,11 @@ export default function Page() {
 	)
 	return (
 		<MainLayout>
-			<div className='md:px-10 m-4'>
-				<h1 className='text-2xl font-semibold mb-8 text-gray-900'>
+			<div className='m-4 md:px-10'>
+				<h1 className='mb-8 text-2xl font-semibold text-gray-900'>
 					Berita dan Acara
 				</h1>
-				<div className='flex flex-col gap-6 my-2'>
+				<div className='my-2 flex flex-col gap-6'>
 					{groupedNews.map((news) => (
 						<NewsItem date={news.date} news={news.news} />
 					))}

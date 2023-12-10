@@ -38,11 +38,11 @@ export default function LabRequestForm({ className }: LabRequestFormProps) {
 
 	return (
 		<div
-			className={`${className} flex justify-center items-center h-screen bg-gray-100 my-10`}
+			className={`${className} my-10 flex h-screen items-center justify-center bg-gray-100`}
 		>
 			<form
 				onSubmit={handleSubmit(onSubmit)}
-				className='flex flex-col w-full  md:w-3/5 space-y-4 bg-white p-8 rounded-lg shadow-lg'
+				className='flex w-full flex-col  space-y-4 rounded-lg bg-white p-8 shadow-lg md:w-3/5'
 			>
 				<label className='text-lg font-semibold text-gray-700'>
 					Nama Peminjam
@@ -58,7 +58,7 @@ export default function LabRequestForm({ className }: LabRequestFormProps) {
 				</label>
 				<input
 					{...register('email_peminjam')}
-					className='input input-bordered bg-gray-50 input-disabled'
+					className='input input-bordered input-disabled bg-gray-50'
 					type='email'
 					value={session?.user?.email ?? ''}
 					readOnly
@@ -101,7 +101,7 @@ export default function LabRequestForm({ className }: LabRequestFormProps) {
 					selected={startDate}
 					onChange={(date: Date) => setStartDate(date)}
 					dateFormat='dd/MM/yyyy'
-					className='input input-bordered bg-white text-gray-900 w-full'
+					className='input input-bordered w-full bg-white text-gray-900'
 					startDate={new Date()}
 					minDate={new Date()}
 					placeholderText='Tanggal'
@@ -153,11 +153,11 @@ export default function LabRequestForm({ className }: LabRequestFormProps) {
 					<p className='text-red-500'>This field is required</p>
 				)}
 
-				<div className='flex justify-end space-x-4 mt-6'>
+				<div className='mt-6 flex justify-end space-x-4'>
 					<Link href='/borrow'>
 						<button
 							type='button'
-							className='btn bg-gray-300 hover:bg-gray-400 text-gray-700'
+							className='btn bg-gray-300 text-gray-700 hover:bg-gray-400'
 						>
 							Cancel
 						</button>
