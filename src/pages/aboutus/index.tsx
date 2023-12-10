@@ -35,7 +35,7 @@ export default function Page() {
 						Meet Our Team{' '}
 					</h1>
 				</div>
-				<div className='md:flex md:flex-row grid grid-cols-1  gap-4 items-center'>
+				<div className='lg:flex md:flex-wrap md:flex grid grid-cols-1  gap-4 items-center justify-center'>
 					{dataTeam.map((team, index) => (
 						<Link key={index} href={team.link}>
 							<div
