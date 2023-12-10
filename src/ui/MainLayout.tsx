@@ -9,8 +9,9 @@ import {
 	FaChartBar,
 	FaBars,
 	FaUsers,
+	FaSignOutAlt,
 } from 'react-icons/fa'
-import { useSession } from 'next-auth/react'
+import { useSession, signOut } from 'next-auth/react'
 import GoogleLoginBtn from '@/ui/components/GoogleLoginBtn'
 import LoadingSpinner from '@/ui/components/LoadingSpinner'
 import GoogleLogoutBtn from './components/GoogleLogoutBtn'
@@ -51,19 +52,21 @@ const NavItem = ({ label, icon, href }: NavItemProps) => {
 	)
 }
 
-const NavList = () => (
-	<ul className='space-y-2 text-sm'>
-		{navItems.map((item) => (
-			<NavItem key={item.label} {...item} />
-		))}
-	</ul>
-)
-
 const MainLayout = ({ children }: MainLayoutProps) => {
 	const { data: session, status } = useSession()
 	const [isOpen, setIsOpen] = useState(false)
 
-	const toggleMenu = () => setIsOpen(!isOpen)
+	const toggleMenu = () => {
+		setIsOpen(!isOpen)
+	}
+
+	const NavList = () => (
+		<ul className='space-y-2 text-sm'>
+			{navItems.map((item) => (
+				<NavItem key={item.label} {...item} />
+			))}
+		</ul>
+	)
 
 	if (status === 'loading') {
 		return (
@@ -80,15 +83,13 @@ const MainLayout = ({ children }: MainLayoutProps) => {
 					PinjamLab
 				</Link>
 				<div className='flex items-center space-x-4'>
+					<button className='md:hidden' onClick={toggleMenu}>
+						<FaBars className='text-white text-2xl' />
+					</button>
 					{session && (
-						<>
-							<button className='md:hidden' onClick={toggleMenu}>
-								<FaBars className='text-white text-2xl' />
-							</button>
-							<div className='hidden md:flex items-center space-x-4'>
-								<GoogleLogoutBtn />
-							</div>
-						</>
+						<div className='hidden md:flex items-center space-x-4'>
+							<GoogleLogoutBtn />
+						</div>
 					)}
 				</div>
 			</nav>
