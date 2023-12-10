@@ -63,7 +63,7 @@ const dummyDataNews = [
 	},
 ]
 interface NewsItemProps {
-	id: number
+	key: number
 	date: string
 	news: { title: string; description: string; image: string; href: string }[]
 }
@@ -82,7 +82,7 @@ export default function Page() {
 			if (existingDate) {
 				existingDate.news.push(newsItem)
 			} else {
-				acc.push({ id: curr.id, date: date, news: [newsItem] })
+				acc.push({ key: curr.id, date: date, news: [newsItem] })
 			}
 			return acc
 		},
@@ -97,7 +97,7 @@ export default function Page() {
 				<div className='flex flex-col gap-6 my-2'>
 					{groupedNews.map((news) => (
 						<NewsItem
-							key={news.id}
+							key={news.key}
 							date={news.date}
 							news={news.news}
 						/>

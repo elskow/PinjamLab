@@ -4,17 +4,18 @@ interface NewsItemProps {
 	title: string
 	description: string
 	image: string
-	href: string
+	key: number
 }
 
-const NewsItem = ({ title, description, image, href }: NewsItemProps) => {
+
+const NewsItem = ({ title, description, image, key }: NewsItemProps) => {
 	return (
 		<div className='flex flex-row hover:shadow-lg'>
 			<button
 				onClick={() =>
 					(
 						document.getElementById(
-							'my_modal_2',
+							String(title),
 						) as HTMLDialogElement
 					).showModal()
 				}
@@ -38,11 +39,11 @@ const NewsItem = ({ title, description, image, href }: NewsItemProps) => {
 					</p>
 				</div>
 			</button>
-			<dialog id='my_modal_2' className='modal glass'>
-				<div className='modal-box bg-white'>
-					<h3 className='font-bold text-lg text-gray-900'>Hello!</h3>
+			<dialog id={String(title)} className='modal glass'>
+				<div className='modal-box bg-white w-11/12 max-w-5xl'>
+					<h3 className='font-bold text-lg text-gray-900'>{title}</h3>
 					<p className='py-4 text-gray-600 text-sm'>
-						Press ESC key or click outside to close
+						{description}
 					</p>
 				</div>
 				<form method='dialog' className='modal-backdrop'>
