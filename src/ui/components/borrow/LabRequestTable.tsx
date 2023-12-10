@@ -48,8 +48,8 @@ const TableRow: React.FC<TableRowProps> = ({ item, index }) => {
 		item.approved === 'Accepted'
 			? 'bg-green-50'
 			: item.approved === 'Rejected'
-				? 'bg-red-50'
-				: 'bg-yellow-50'
+			  ? 'bg-red-50'
+			  : 'bg-yellow-50'
 	return (
 		<tr
 			className={`hover:bg-zinc-50 ${rowClass} hover:shadow-lg hover:rounded-lg transition duration-200 hover:cursor-pointer ease-in-out`}

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
 	FaHome,
 	FaChalkboardTeacher,
@@ -62,6 +62,21 @@ const NavList = () => (
 const MainLayout = ({ children }: MainLayoutProps) => {
 	const { data: session, status } = useSession()
 	const [isOpen, setIsOpen] = useState(false)
+	const [isScrolling, setIsScrolling] = useState(false)
+
+	useEffect(() => {
+		const handleScroll = () => {
+			if (window.scrollY > 0) {
+				setIsScrolling(true)
+			} else {
+				setIsScrolling(false)
+			}
+		}
+
+		window.addEventListener('scroll', handleScroll)
+
+		return () => window.removeEventListener('scroll', handleScroll)
+	}, [])
 
 	const toggleMenu = () => setIsOpen(!isOpen)
 
@@ -75,29 +90,31 @@ const MainLayout = ({ children }: MainLayoutProps) => {
 
 	return (
 		<div className='min-h-screen bg-gray-100 flex flex-col'>
-			<nav className='bg-blue-800 p-4 px-8 flex justify-between items-center shadow-md sticky top-0 z-50'>
-				<Link href='/' className='text-white text-lg font-bold'>
-					PinjamLab
-				</Link>
-				<div className='flex items-center space-x-4'>
-					{session && (
-						<>
-							<button className='md:hidden' onClick={toggleMenu}>
-								<FaBars className='text-white text-2xl' />
-							</button>
-							<div className='hidden md:flex items-center space-x-4'>
-								<GoogleLogoutBtn />
-							</div>
-						</>
-					)}
-				</div>
-			</nav>
-			<nav
-				className={`md:hidden bg-white p-4 border-b border-gray-200 ${
-					isOpen ? 'block' : 'hidden'
-				}`}
-			>
-				<ul className='space-y-2 text-sm'>
+			<div className='sticky top-0 z-50'>
+				<nav className='bg-blue-800 p-4 px-8 flex justify-between items-center shadow-md'>
+					<Link href='/' className='text-white text-lg font-bold'>
+						PinjamLab
+					</Link>
+					<div className='flex items-center space-x-4'>
+						{session && (
+							<>
+								<button
+									className='md:hidden'
+									onClick={toggleMenu}
+								>
+									<FaBars className='text-white text-2xl' />
+								</button>
+								<div className='hidden md:flex items-center space-x-4'>
+									<GoogleLogoutBtn />
+								</div>
+							</>
+						)}
+					</div>
+				</nav>
+				<ul
+					className={`md:hidden bg-white p-4 border-b border-gray-200 space-y-2 text-sm sticky top-0 z-50 ${
+						isOpen ? 'block' : 'hidden'} ${isScrolling && isOpen && 'shadow-md transition-shadow duration-300' }`}
+				>
 					{navItems.map((item) => (
 						<NavItem key={item.label} {...item} />
 					))}
@@ -107,7 +124,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
 						</div>
 					)}
 				</ul>
-			</nav>
+			</div>
 			{session ? (
 				<div className='flex flex-grow overflow-y-hidden'>
 					<aside className='w-80 bg-white p-4 border-r border-gray-200 pt-12 md:pt-6 md:sticky md:top-0 overflow-y-hidden md:block hidden'>
