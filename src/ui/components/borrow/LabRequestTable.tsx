@@ -1,13 +1,21 @@
-import { FaCheckCircle, FaTimesCircle, FaHourglassHalf } from 'react-icons/fa'
+import {
+	FaCheckCircle,
+	FaTimesCircle,
+	FaHourglassHalf,
+	FaTimes,
+	FaInfoCircle,
+} from 'react-icons/fa'
 
-type ApprovedStatus = 'Accepted' | 'Rejected' | 'Pending'
+import type { ApprovedStatus, ActivityType } from '@/utils/types'
+import Link from 'next/link'
 
 interface DataRequest {
 	id: number
-	nama_pemohon: string
-	jenis_kegiatan: string
+	jenis_kegiatan: ActivityType
+	nama_kegiatan: string
 	tanggal: string
-	rentang_waktu: string
+	start_time: string
+	end_time: string
 	dosen_penanggung_jawab: string
 	approved: ApprovedStatus
 }
@@ -18,14 +26,36 @@ interface TableRowProps {
 }
 
 const TableRow: React.FC<TableRowProps> = ({ item, index }) => {
-	const rowClass = item.approved === 'Accepted' ? '' : 'bg-red-50'
+	const startDateTime = new Date(`${item.tanggal}T${item.start_time}`)
+	const endDateTime = new Date(`${item.tanggal}T${item.end_time}`)
+
+	const dateTimeFormat = new Intl.DateTimeFormat('id-ID', {
+		year: 'numeric',
+		month: 'short',
+		day: '2-digit',
+		hour: '2-digit',
+		minute: '2-digit',
+		hour12: false,
+	})
+
+	const formattedStartDateTime = dateTimeFormat.format(startDateTime)
+	const formattedEndDateTime = dateTimeFormat.format(endDateTime)
+
+	const formattedDateTimeRange = `${formattedStartDateTime} - ${
+		formattedEndDateTime.split(', ')[1]
+	}`
+	const rowClass =
+		item.approved === 'Accepted'
+			? 'bg-green-50'
+			: item.approved === 'Rejected'
+			  ? 'bg-red-50'
+			  : 'bg-yellow-50'
 	return (
-		<tr className={`hover:bg-gray-100 ${rowClass}`}>
+		<tr
+			className={`hover:bg-zinc-50 ${rowClass} hover:shadow-lg hover:rounded-lg transition duration-200 hover:cursor-pointer ease-in-out`}
+		>
 			<td className='px-6 py-4 text-center whitespace-nowrap'>
 				<div className='text-sm text-gray-900'>{index + 1}</div>
-			</td>
-			<td className='px-6 py-4 text-center whitespace-nowrap'>
-				<div className='text-sm text-gray-900'>{item.nama_pemohon}</div>
 			</td>
 			<td className='px-6 py-4 text-center whitespace-nowrap'>
 				<div className='text-sm text-gray-900'>
@@ -33,11 +63,13 @@ const TableRow: React.FC<TableRowProps> = ({ item, index }) => {
 				</div>
 			</td>
 			<td className='px-6 py-4 text-center whitespace-nowrap'>
-				<div className='text-sm text-gray-900'>{item.tanggal}</div>
+				<div className='text-sm text-gray-900'>
+					{item.nama_kegiatan}
+				</div>
 			</td>
 			<td className='px-6 py-4 text-center whitespace-nowrap'>
 				<div className='text-sm text-gray-900'>
-					{item.rentang_waktu}
+					{formattedDateTimeRange}
 				</div>
 			</td>
 			<td className='px-6 py-4 text-center whitespace-nowrap'>
@@ -56,6 +88,20 @@ const TableRow: React.FC<TableRowProps> = ({ item, index }) => {
 					)}
 				</div>
 			</td>
+			<td className='px-6 py-4 text-center whitespace-nowrap'>
+				<div className='text-sm flex justify-center'>
+					{item.approved === 'Pending' ? (
+						<FaTimes className='text-red-500' />
+					) : (
+						<Link
+							href={`/borrow/${item.id}`}
+							className='text-blue-500'
+						>
+							<FaInfoCircle />
+						</Link>
+					)}
+				</div>
+			</td>
 		</tr>
 	)
 }
@@ -67,12 +113,12 @@ interface LabRequestTableProps {
 
 const headers = [
 	'No.',
-	'Pemohon',
 	'Jenis Kegiatan',
-	'Tanggal',
-	'Rentang Waktu',
+	'Nama Kegiatan',
+	'Tanggal dan Waktu',
 	'Dosen Penanggung Jawab',
 	'Approved',
+	'Action',
 ]
 
 export default function LabRequestTable({
