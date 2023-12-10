@@ -11,8 +11,11 @@ const NewsItem = ({ title, description, image, href }: NewsItemProps) => {
 	return (
 		<div className='flex flex-row hover:shadow-lg'>
 			<button
-				onClick={()=>(document.getElementById('my_modal_2') as any).showModal()}
-				className='flex shadow-md sm:flex-row flex-col rounded-md flex-grow gap-2 p-6 bg-white space-x-4 items-center'>
+				onClick={() =>
+					(document.getElementById('my_modal_2') as any).showModal()
+				}
+				className='flex shadow-md sm:flex-row flex-col rounded-md flex-grow gap-2 p-6 bg-white space-x-4 items-center'
+			>
 				<div className='flex flex-shrink-0'>
 					<Image
 						className='rounded-lg sm:w-32 sm:h-32'
@@ -31,14 +34,16 @@ const NewsItem = ({ title, description, image, href }: NewsItemProps) => {
 					</p>
 				</div>
 			</button>
-			<dialog id="my_modal_2" className="modal">
-  				<div className="modal-box">
-    				<h3 className="font-bold text-lg">Hello!</h3>
-    				<p className="py-4">Press ESC key or click outside to close</p>
-  				</div>
-  				<form method="dialog" className="modal-backdrop">
-    				<button>close</button>
-  				</form>
+			<dialog id='my_modal_2' className='modal'>
+				<div className='modal-box'>
+					<h3 className='font-bold text-lg'>Hello!</h3>
+					<p className='py-4'>
+						Press ESC key or click outside to close
+					</p>
+				</div>
+				<form method='dialog' className='modal-backdrop'>
+					<button>close</button>
+				</form>
 			</dialog>
 		</div>
 	)
