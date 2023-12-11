@@ -1,3 +1,5 @@
+import ScheduleGroupItems from './ScheduleGroupItems'
+
 interface ScheduleProps {
 	day: string
 	schedules: {
@@ -7,6 +9,28 @@ interface ScheduleProps {
 		waktu: string
 		day: string
 	}[]
+}
+
+export function ScheduleModalItems({ day, schedules }: ScheduleProps) {
+	return (
+		<div>
+			{schedules.map((schedule) => (
+				<div
+					className={`${schedule.day === day ? `` : `hidden`}
+				}`}
+				>
+					<ScheduleGroupItems
+						key={schedule.id}
+						id={schedule.id}
+						matakuliah={schedule.matakuliah}
+						dosen={schedule.dosen}
+						waktu={schedule.waktu}
+						day={schedule.day}
+					/>
+				</div>
+			))}
+		</div>
+	)
 }
 
 export default function ScheduleItems({ day, schedules }: ScheduleProps) {
@@ -22,11 +46,14 @@ export default function ScheduleItems({ day, schedules }: ScheduleProps) {
 						schedule.day === day ? `` : `hidden`
 					}`}
 				>
-					<h5 className='text-md font-semibold text-gray-900'>
-						{schedule.matakuliah}
-					</h5>
-					<p className='text-sm text-gray-600'>{schedule.dosen}</p>
-					<p className='text-sm text-gray-600'>{schedule.waktu}</p>
+					<ScheduleGroupItems
+						key={schedule.id}
+						id={schedule.id}
+						matakuliah={schedule.matakuliah}
+						dosen={schedule.dosen}
+						waktu={schedule.waktu}
+						day={schedule.day}
+					/>
 				</div>
 			))}
 		</div>
