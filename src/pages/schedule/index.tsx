@@ -1,6 +1,7 @@
 import MainLayout from '@/ui/MainLayout'
 import ScheduleItems from '@/ui/components/schedule/ScheduleItems'
 import ScheduleGroupItems from '@/ui/components/schedule/ScheduleGroupItems'
+import { ScheduleModalItems } from '@/ui/components/schedule/ScheduleItems'
 
 const dummyDataSchedule = [
 	{
@@ -18,21 +19,21 @@ const dummyDataSchedule = [
 		day: 'Senin',
 	},
 	{
-		id: 2,
+		id: 3,
 		matakuliah: 'DDP 2',
 		dosen: 'Kukuh Nugroho',
 		waktu: '13.00 - 15.00',
 		day: 'Selasa',
 	},
 	{
-		id: 3,
+		id: 4,
 		matakuliah: 'Pemrosesan Citra Digital',
 		dosen: 'Arief Kurniawan',
 		waktu: '15.00 - 17.00',
 		day: 'Rabu',
 	},
 	{
-		id: 4,
+		id: 5,
 		matakuliah: 'Pemrograman Berbasis Objek',
 		dosen: 'Sugeng Purwanto',
 		waktu: '09.00 - 11.00',
@@ -66,19 +67,6 @@ export default function Page() {
 							key={day}
 							day={day}
 							schedules={dummyDataSchedule}
-						/>
-					))}
-				</div>
-
-				<div>
-					{dummyDataSchedule.map((schedule) => (
-						<ScheduleGroupItems
-							key={schedule.id}
-							id={schedule.id}
-							matakuliah={schedule.matakuliah}
-							dosen={schedule.dosen}
-							waktu={schedule.waktu}
-							day={schedule.day}
 						/>
 					))}
 				</div>
