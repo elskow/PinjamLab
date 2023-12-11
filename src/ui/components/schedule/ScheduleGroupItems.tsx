@@ -15,7 +15,7 @@ export default function ScheduleGroupItems({
 }: ScheduleItemsProps) {
 	return (
 		<button>
-			<div className='flex flex-row hover:shadow-lg'>
+			<div className='flex flex-row'>
 				<button
 					onClick={() =>
 						(
@@ -24,7 +24,7 @@ export default function ScheduleGroupItems({
 							) as HTMLDialogElement
 						).showModal()
 					}
-					className='flex flex-grow flex-col items-center gap-2 space-x-4 rounded-md bg-white p-6 shadow-md sm:flex-row'
+					className='= flex flex-grow flex-col items-center gap-2 space-x-4 rounded-md sm:flex-row'
 				>
 					<div className='flex flex-col'>
 						<h5 className='text-left text-lg font-bold text-gray-900'>
