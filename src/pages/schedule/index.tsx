@@ -1,5 +1,6 @@
 import MainLayout from '@/ui/MainLayout'
 import ScheduleItems from '@/ui/components/schedule/ScheduleItems'
+import ScheduleGroupItems from '@/ui/components/schedule/ScheduleGroupItems'
 
 const dummyDataSchedule = [
 	{
@@ -65,6 +66,19 @@ export default function Page() {
 							key={day}
 							day={day}
 							schedules={dummyDataSchedule}
+						/>
+					))}
+				</div>
+
+				<div>
+					{dummyDataSchedule.map((schedule) => (
+						<ScheduleGroupItems
+							key={schedule.id}
+							id={schedule.id}
+							matakuliah={schedule.matakuliah}
+							dosen={schedule.dosen}
+							waktu={schedule.waktu}
+							day={schedule.day}
 						/>
 					))}
 				</div>
