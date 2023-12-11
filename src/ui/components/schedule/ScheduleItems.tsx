@@ -11,28 +11,6 @@ interface ScheduleProps {
 	}[]
 }
 
-export function ScheduleModalItems({ day, schedules }: ScheduleProps) {
-	return (
-		<div>
-			{schedules.map((schedule) => (
-				<div
-					className={`${schedule.day === day ? `` : `hidden`}
-				}`}
-				>
-					<ScheduleGroupItems
-						key={schedule.id}
-						id={schedule.id}
-						matakuliah={schedule.matakuliah}
-						dosen={schedule.dosen}
-						waktu={schedule.waktu}
-						day={schedule.day}
-					/>
-				</div>
-			))}
-		</div>
-	)
-}
-
 export default function ScheduleItems({ day, schedules }: ScheduleProps) {
 	return (
 		<div className='space-y-4 rounded-lg bg-white p-8 shadow-lg'>
@@ -46,14 +24,11 @@ export default function ScheduleItems({ day, schedules }: ScheduleProps) {
 						schedule.day === day ? `` : `hidden`
 					}`}
 				>
-					<ScheduleGroupItems
-						key={schedule.id}
-						id={schedule.id}
-						matakuliah={schedule.matakuliah}
-						dosen={schedule.dosen}
-						waktu={schedule.waktu}
-						day={schedule.day}
-					/>
+					<h5 className='text-md font-semibold text-gray-900'>
+						{schedule.matakuliah}
+					</h5>
+					<p className=' text-sm text-gray-600'>{schedule.dosen}</p>
+					<p className=' text-sm text-gray-600'>{schedule.waktu}</p>
 				</div>
 			))}
 		</div>

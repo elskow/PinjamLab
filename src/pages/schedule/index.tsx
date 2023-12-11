@@ -1,7 +1,5 @@
 import MainLayout from '@/ui/MainLayout'
 import ScheduleItems from '@/ui/components/schedule/ScheduleItems'
-import ScheduleGroupItems from '@/ui/components/schedule/ScheduleGroupItems'
-import { ScheduleModalItems } from '@/ui/components/schedule/ScheduleItems'
 
 const dummyDataSchedule = [
 	{
