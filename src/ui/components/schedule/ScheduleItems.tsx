@@ -18,18 +18,13 @@ export default function ScheduleItems({ day, schedules }: ScheduleProps) {
 				{day}
 			</div>
 			{schedules.map((schedule) => (
-				<div
+				<ScheduleGroupItems
 					key={schedule.id}
-					className={`space-y-2 rounded-lg bg-gray-100 p-4 shadow-lg ${
-						schedule.day === day ? `` : `hidden`
-					}`}
-				>
-					<h5 className='text-md font-semibold text-gray-900'>
-						{schedule.matakuliah}
-					</h5>
-					<p className=' text-sm text-gray-600'>{schedule.dosen}</p>
-					<p className=' text-sm text-gray-600'>{schedule.waktu}</p>
-				</div>
+					id={schedule.id}
+					matakuliah={schedule.matakuliah}
+					dosen={schedule.dosen}
+					waktu={schedule.waktu}
+				/>
 			))}
 		</div>
 	)
