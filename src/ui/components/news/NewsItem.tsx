@@ -20,6 +20,7 @@ const NewsItem = ({ date, news }: NewsItemProps) => {
 			<div className='flex flex-col gap-2'>
 				{news.map((i) => (
 					<NewsGroupItem
+						key={i.id}
 						title={i.title}
 						description={i.description}
 						image={i.image}
