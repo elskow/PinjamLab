@@ -85,7 +85,7 @@ export default function Page() {
 					))}
 				</div>
 
-				<div className='my-10 grid grid-cols-3 gap-4 md:hidden'>
+				<div className='my-10 grid grid-cols-1 gap-4 md:hidden'>
 					{groupedSchedule.map((schedule) => (
 						<ScheduleItems
 							key={schedule.day}
