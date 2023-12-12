@@ -41,33 +41,7 @@ const dummyDataSchedule = [
 
 const days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat']
 
-interface ScheduleProps {
-	day: string
-	schedules: {
-		id: number
-		matakuliah: string
-		dosen: string
-		waktu: string
-		day: string
-	}[]
-}
-
 export default function Page() {
-	const groupedSchedule: ScheduleProps[] = dummyDataSchedule.reduce(
-		(acc: ScheduleProps[], curr) => {
-			const found = acc.find((i) => i.day === curr.day)
-			if (found) {
-				found.schedules.push(curr)
-			} else {
-				acc.push({
-					day: curr.day,
-					schedules: [curr],
-				})
-			}
-			return acc
-		},
-		[],
-	)
 	return (
 		<MainLayout>
 			<div className='m-4 md:px-10'>
@@ -76,21 +50,21 @@ export default function Page() {
 				</h1>
 
 				<div className='my-10 hidden grid-cols-3 gap-4 md:grid'>
-					{groupedSchedule.map((schedule) => (
+					{days.map((day) => (
 						<ScheduleItems
-							key={schedule.day}
-							day={schedule.day}
-							schedules={schedule.schedules}
+							key={day}
+							day={day}
+							schedules={dummyDataSchedule}
 						/>
 					))}
 				</div>
 
-				<div className='my-10 grid grid-cols-1 gap-4 md:hidden'>
-					{groupedSchedule.map((schedule) => (
+				<div className='my-10 space-y-4 md:hidden'>
+					{days.map((day) => (
 						<ScheduleItems
-							key={schedule.day}
-							day={schedule.day}
-							schedules={schedule.schedules}
+							key={day}
+							day={day}
+							schedules={dummyDataSchedule}
 						/>
 					))}
 				</div>
