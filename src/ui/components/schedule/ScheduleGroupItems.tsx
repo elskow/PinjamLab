@@ -37,22 +37,36 @@ export default function ScheduleGroupItems({
 				</div>
 			</button>
 			<dialog id={id.toString()} className='glass modal'>
-				<div className='modal-box flex w-11/12 max-w-5xl flex-col bg-white md:flex-row'>
+				<div className='modal-box space-y-4 bg-white'>
 					<Image
+						className='self-center rounded-lg'
+						alt='gambar'
+						width='200'
+						height='100'
 						src='https://picsum.photos/200'
-						width={300}
-						height={300}
-						alt='undraw_education'
 					/>
-					<div className='px-4'>
-						<h3 className='text-xl font-bold text-gray-900'>
-							{matakuliah}
-						</h3>
-						<p className='text-md text-gray-600'>{dosen}</p>
+					<h3 className='text-lg font-bold text-gray-900'>
+						{matakuliah}
+					</h3>
+					<p className='text-justify text-sm text-gray-600'>
+						Occaecat laboris occaecat eu ut dolore nulla tempor
+						laborum culpa esse non ex fugiat in. Incididunt aute
+						eiusmod occaecat non pariatur proident ipsum cillum.
+						Consequat sunt aliquip excepteur ullamco est excepteur
+						in sit dolore. Irure irure culpa reprehenderit tempor
+						elit proident sint ut sit esse proident fugiat enim
+						excepteur.
+					</p>
+					<div className='flex space-x-2'>
+						<AiOutlineUser className='mr-2 inline-block h-6 w-6 rounded-full bg-slate-400 text-xl text-gray-900' />
+						<p className='text-md text-gray-900'>{dosen}</p>
+					</div>
+					<div className='flex space-x-3'>
+						<p className='text-sm text-gray-600'>{day}</p>
 						<p className='text-sm text-gray-600'>{waktu}</p>
-						<p>{day}</p>
 					</div>
 				</div>
+
 				<form method='dialog' className='modal-backdrop'>
 					<button>close</button>
 				</form>
