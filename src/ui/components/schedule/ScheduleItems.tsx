@@ -24,6 +24,7 @@ export default function ScheduleItems({ day, schedules }: ScheduleProps) {
 					matakuliah={schedule.matakuliah}
 					dosen={schedule.dosen}
 					waktu={schedule.waktu}
+					day={schedule.day}
 				/>
 			))}
 		</div>
