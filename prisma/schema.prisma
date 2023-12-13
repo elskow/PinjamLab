@@ -6,41 +6,46 @@ generator client {
 }
 
 datasource db {
-    provider = "sqlite"
+    provider = "postgresql"
     url      = env("DATABASE_URL")
 }
 
+enum ActivityType {
+    Kuliah
+    Praktikum
+    Seminar
+    Lainnya
+}
+
+enum ApprovedStatus {
+    Accepted
+    Rejected
+    Pending
+}
+
+enum RoleType {
+    Admin
+    User
+}
+
+model KegiatanLab {
+    id                     Int            @id @default(autoincrement())
+    jenis_kegiatan         ActivityType
+    nama_kegiatan          String
+    nama_pemohon           String
+    email_pemohon          String
+    tanggal                DateTime
+    start_time             String
+    end_time               String
+    dosen_penanggung_jawab String
+    approved               ApprovedStatus
+    created_at             DateTime       @default(now())
+    updated_at             DateTime       @updatedAt
+}
+
 model User {
-    id     Int      @id @default(autoincrement())
-    email  String   @unique
-    name   String?
-    role   String?  @default("Mahasiswa")
-    borrow Borrow[]
-}
-
-model LabAdmins {
-    id     Int      @id @default(autoincrement())
-    email  String   @unique
-    name   String?
-    role   String?  @default("Asisten Lab")
-    borrow Borrow[]
-}
-
-model Borrow {
-    id         Int          @id @default(autoincrement())
-    user       User         @relation(fields: [userId], references: [id])
-    userId     Int
-    labAdmin   LabAdmins    @relation(fields: [labAdminId], references: [id])
-    labAdminId Int
-    Usage      String?
-    Date       DateTime?
-    Duration   Int?
-    Status     BorrowStatus @relation(fields: [statusId], references: [id])
-    statusId   Int
-}
-
-model BorrowStatus {
-    id     Int      @id @default(autoincrement())
-    status String   @unique
-    borrow Borrow[]
+    id         Int      @id @default(autoincrement())
+    email      String   @unique
+    role       RoleType
+    created_at DateTime @default(now())
 }
