@@ -82,7 +82,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
 
 	if (status === 'loading') {
 		return (
-			<div className='flex h-screen flex-grow items-center justify-center'>
+			<div className='flex h-screen flex-grow items-center justify-center bg-gray-100'>
 				<LoadingSpinner />
 			</div>
 		)
