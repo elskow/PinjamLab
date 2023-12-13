@@ -1,15 +1,16 @@
 import { useSession } from 'next-auth/react'
-import { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
 import type { SubmitHandler } from 'react-hook-form'
+import * as yup from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup'
 import DatePicker from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css'
 import Link from 'next/link'
-import { ActivityTypes } from '@/utils/types'
 import type { ActivityType } from '@/utils/types'
+import { ActivityTypes } from '@/utils/types'
+
+import 'react-datepicker/dist/react-datepicker.css'
 
 interface LabRequestData {
-	id: number
 	email_peminjam: string
 	nama_peminjam: string
 	jenis_kegiatan: ActivityType
@@ -24,24 +25,68 @@ interface LabRequestFormProps {
 	className?: string
 }
 
-// Define the form component
 export default function LabRequestForm({ className }: LabRequestFormProps) {
 	const { data: session } = useSession()
+
+	// Validation schema
+	const schema = yup.object().shape({
+		email_peminjam: yup.string().trim().required('Email is required'),
+		nama_peminjam: yup.string().trim().required('Name is required'),
+		jenis_kegiatan: yup
+			.mixed<ActivityType>()
+			.oneOf(Object.values(ActivityTypes), 'Invalid activity type')
+			.required('Activity type is required'),
+		nama_kegiatan: yup
+			.string()
+			.trim()
+			.required('Activity name is required'),
+		tanggal: yup.string().required('Date is required'),
+		start_time: yup.string().required('Start time is required'),
+		end_time: yup
+			.string()
+			.required('End time is required')
+			.test(
+				'duration',
+				'Duration should not exceed 5 hours nor be less than 0',
+				function (value) {
+					const startTime: string = this.resolve(
+						yup.ref('start_time'),
+					)
+					const start = new Date(`1970-01-01T${startTime}:00`)
+					const end = new Date(`1970-01-01T${value}:00`)
+					const duration =
+						(end.getTime() - start.getTime()) / (1000 * 60 * 60) // duration in hours
+					return duration <= 5 && duration > 0
+				},
+			),
+		dosen_penanggung_jawab: yup
+			.string()
+			.trim()
+			.required('Responsible person is required'),
+	})
+
 	const {
 		register,
 		handleSubmit,
+		control,
 		formState: { errors },
-	} = useForm<LabRequestData>()
-	const [startDate, setStartDate] = useState(new Date())
+	} = useForm<LabRequestData>({
+		resolver: yupResolver(schema),
+	})
 
-	const onSubmit: SubmitHandler<LabRequestData> = (data) => console.log(data)
+	const onSubmit: SubmitHandler<LabRequestData> = (data) => {
+		console.log(data)
+		alert('Form submitted')
+	}
 
 	return (
 		<div
-			className={`${className} my-10 flex h-screen items-center justify-center bg-gray-100`}
+			className={`${className} my-10 flex items-center justify-center bg-gray-100`}
 		>
 			<form
-				onSubmit={handleSubmit(onSubmit)}
+				onSubmit={handleSubmit(onSubmit, (errors) => {
+					console.log(errors)
+				})}
 				className='flex w-full flex-col  space-y-4 rounded-lg bg-white p-8 shadow-lg md:w-3/5'
 			>
 				<label className='text-lg font-semibold text-gray-700'>
@@ -53,6 +98,12 @@ export default function LabRequestForm({ className }: LabRequestFormProps) {
 					type='text'
 					placeholder='Nama Peminjam'
 				/>
+
+				{errors.nama_peminjam && (
+					<p className='text-red-500'>
+						{errors.nama_peminjam.message}
+					</p>
+				)}
 				<label className='text-lg font-semibold text-gray-700'>
 					Email Peminjam
 				</label>
@@ -78,7 +129,9 @@ export default function LabRequestForm({ className }: LabRequestFormProps) {
 					))}
 				</select>
 				{errors.jenis_kegiatan && (
-					<p className='text-red-500'>This field is required</p>
+					<p className='text-red-500'>
+						{errors.jenis_kegiatan.message}
+					</p>
 				)}
 
 				<label className='text-lg font-semibold text-gray-700'>
@@ -91,23 +144,42 @@ export default function LabRequestForm({ className }: LabRequestFormProps) {
 					placeholder='Nama Kegiatan'
 				/>
 				{errors.nama_kegiatan && (
-					<p className='text-red-500'>This field is required</p>
+					<p className='text-red-500'>
+						{errors.nama_kegiatan.message}
+					</p>
 				)}
 
 				<label className='text-lg font-semibold text-gray-700'>
 					Tanggal
 				</label>
-				<DatePicker
-					selected={startDate}
-					onChange={(date: Date) => setStartDate(date)}
-					dateFormat='dd/MM/yyyy'
-					className='input input-bordered w-full bg-white text-gray-900'
-					startDate={new Date()}
-					minDate={new Date()}
-					placeholderText='Tanggal'
+				<Controller
+					control={control}
+					name='tanggal'
+					rules={{ required: 'This field is required' }}
+					render={({ field }) => (
+						<DatePicker
+							{...field}
+							selected={
+								field.value ? new Date(field.value) : null
+							}
+							onChange={(date) => field.onChange(date)}
+							dateFormat='dd/MM/yyyy'
+							className='input input-bordered w-full bg-white text-gray-900'
+							startDate={new Date()}
+							minDate={new Date()}
+							maxDate={
+								new Date(
+									new Date().setDate(
+										new Date().getDate() + 28,
+									),
+								)
+							} // 2 weeks from now
+							placeholderText='Tanggal'
+						/>
+					)}
 				/>
 				{errors.tanggal && (
-					<p className='text-red-500'>This field is required</p>
+					<p className='text-red-500'>{errors.tanggal.message}</p>
 				)}
 
 				<label className='text-lg font-semibold text-gray-700'>
@@ -122,14 +194,16 @@ export default function LabRequestForm({ className }: LabRequestFormProps) {
 					step='1800'
 				/>
 				{errors.start_time && (
-					<p className='text-red-500'>This field is required</p>
+					<p className='text-red-500'>{errors.start_time.message}</p>
 				)}
 
 				<label className='text-lg font-semibold text-gray-700'>
 					End Time
 				</label>
 				<input
-					{...register('end_time', { required: true })}
+					{...register('end_time', {
+						required: true,
+					})}
 					className='input input-bordered bg-white text-gray-900'
 					type='time'
 					min='07:00'
@@ -137,7 +211,7 @@ export default function LabRequestForm({ className }: LabRequestFormProps) {
 					step='1800'
 				/>
 				{errors.end_time && (
-					<p className='text-red-500'>This field is required</p>
+					<p className='text-red-500'>{errors.end_time.message}</p>
 				)}
 
 				<label className='text-lg font-semibold text-gray-700'>
@@ -150,7 +224,9 @@ export default function LabRequestForm({ className }: LabRequestFormProps) {
 					placeholder='Dosen Penanggung Jawab'
 				/>
 				{errors.dosen_penanggung_jawab && (
-					<p className='text-red-500'>This field is required</p>
+					<p className='text-red-500'>
+						{errors.dosen_penanggung_jawab.message}
+					</p>
 				)}
 
 				<div className='mt-6 flex justify-end space-x-4'>
