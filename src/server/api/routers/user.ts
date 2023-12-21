@@ -6,7 +6,7 @@ import { db } from '@/server/db'
 export const userRouter = createTRPCRouter({
 	addUser: publicProcedure
 		.input(
-			z.object({ email: z.string().nonempty('Email cannot be empty') }),
+			z.object({ email: z.string() }),
 		)
 		.query(async ({ input }) => {
 			let user = await db.user.findFirst({
