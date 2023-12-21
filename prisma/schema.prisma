@@ -28,6 +28,13 @@ enum RoleType {
     User
 }
 
+enum IntervalType {
+    Day
+    Week
+    Month
+    Semester
+}
+
 model KegiatanLab {
     id                     String         @id @default(auto()) @map("_id") @db.ObjectId
     jenis_kegiatan         ActivityType
@@ -35,6 +42,7 @@ model KegiatanLab {
     nama_pemohon           String
     email_pemohon          String
     tanggal                DateTime
+    interval               IntervalType
     start_time             String
     end_time               String
     dosen_penanggung_jawab String
