@@ -66,7 +66,14 @@ const MainLayout = ({ children }: MainLayoutProps) => {
 	const [isScrolling, setIsScrolling] = useState(false)
 
 	const email = session?.user?.email ?? ''
-	const _ = api.user.addUser.useQuery({ email })
+	const userMutation = api.user.addUser.useMutation()
+	const hasMutated = userMutation.isSuccess
+
+	useEffect(() => {
+		if (session && email && !hasMutated) {
+			userMutation.mutate(email)
+		}
+	}, [session, email, hasMutated])
 
 	useEffect(() => {
 		const handleScroll = () => {
