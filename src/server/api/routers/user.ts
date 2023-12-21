@@ -5,9 +5,7 @@ import { db } from '@/server/db'
 
 export const userRouter = createTRPCRouter({
 	addUser: publicProcedure
-		.input(
-			z.object({ email: z.string() }),
-		)
+		.input(z.object({ email: z.string() }))
 		.query(async ({ input }) => {
 			let user = await db.user.findFirst({
 				where: { email: input.email.trim() },
