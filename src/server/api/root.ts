@@ -11,7 +11,7 @@ import { activityRouter } from '@/server/api/routers/activity'
 export const appRouter = createTRPCRouter({
 	post: postRouter,
 	user: userRouter,
-	activity: activityRouter
+	activity: activityRouter,
 })
 
 // export type definition of API
