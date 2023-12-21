@@ -1,3 +1,5 @@
+'use client'
+
 import LabRequestForm from '@/ui/components/borrow/LabRequestForm'
 import MainLayout from '@/ui/MainLayout'
 
