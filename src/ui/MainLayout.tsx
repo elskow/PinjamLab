@@ -14,6 +14,7 @@ import { useSession } from 'next-auth/react'
 import GoogleLoginBtn from '@/ui/components/GoogleLoginBtn'
 import LoadingSpinner from '@/ui/components/LoadingSpinner'
 import GoogleLogoutBtn from './components/GoogleLogoutBtn'
+import { api } from '@/utils/api'
 
 const navItems = [
 	{ label: 'Home', icon: <FaHome />, href: '/' },
@@ -63,6 +64,9 @@ const MainLayout = ({ children }: MainLayoutProps) => {
 	const { data: session, status } = useSession()
 	const [isOpen, setIsOpen] = useState(false)
 	const [isScrolling, setIsScrolling] = useState(false)
+
+	const email = session?.user?.email ?? ''
+	const _ = api.user.addUser.useQuery({ email })
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -130,7 +134,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
 					)}
 				</ul>
 			</div>
-			{session ? (
+			{session?.user?.email ? (
 				<div className='flex flex-grow overflow-y-hidden'>
 					<aside className='hidden w-80 overflow-y-hidden border-r border-gray-200 bg-white p-4 pt-12 md:sticky md:top-0 md:block md:pt-6'>
 						<NavList />
