@@ -29,9 +29,8 @@ enum RoleType {
 }
 
 enum IntervalType {
-    Day
-    Week
-    Month
+    Hari
+    Bulan
     Semester
 }
 

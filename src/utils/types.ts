@@ -6,3 +6,6 @@ export const ActivityTypes: ActivityType[] = [
 	'Seminar',
 	'Lainnya',
 ]
+
+export type IntervalType = 'Hari' | 'Bulan' | 'Semester'
+export const IntervalTypes: IntervalType[] = ['Hari', 'Bulan', 'Semester']

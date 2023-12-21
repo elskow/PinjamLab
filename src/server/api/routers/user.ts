@@ -24,4 +24,20 @@ export const userRouter = createTRPCRouter({
 				user,
 			}
 		}),
+
+	getRole: publicProcedure
+		.input(z.object({ email: z.string() }))
+		.query(async ({ input }) => {
+			const user = await db.user.findFirst({
+				where: { email: input.email.trim() },
+			})
+
+			if (!user) {
+				throw new Error('User not found')
+			}
+
+			return {
+				role: user.role,
+			}
+		}),
 })
