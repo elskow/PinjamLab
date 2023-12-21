@@ -29,7 +29,7 @@ enum RoleType {
 }
 
 model KegiatanLab {
-    id                     Int            @id @map("_id")
+    id                     String         @id @default(auto()) @map("_id") @db.ObjectId
     jenis_kegiatan         ActivityType
     nama_kegiatan          String
     nama_pemohon           String
@@ -44,7 +44,7 @@ model KegiatanLab {
 }
 
 model User {
-    id         Int      @id @map("_id")
+    id         String   @id @default(auto()) @map("_id") @db.ObjectId
     email      String   @unique
     role       RoleType
     created_at DateTime @default(now())
