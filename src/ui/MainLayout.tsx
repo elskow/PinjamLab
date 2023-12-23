@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback, useMemo } from 'react'
 import {
 	FaHome,
 	FaChalkboardTeacher,
@@ -16,14 +16,16 @@ import LoadingSpinner from '@/ui/components/LoadingSpinner'
 import GoogleLogoutBtn from './components/GoogleLogoutBtn'
 import { api } from '@/utils/api'
 
-const navItems = [
-	{ label: 'Home', icon: <FaHome />, href: '/' },
-	{ label: 'Jadwal Kelas', icon: <FaChalkboardTeacher />, href: '/schedule' },
-	{ label: 'Peminjaman', icon: <FaBook />, href: '/borrow' },
-	{ label: 'Berita Acara', icon: <FaNewspaper />, href: '/news' },
-	{ label: 'Lab dalam Angka', icon: <FaChartBar />, href: '/statistics' },
-	{ label: 'About Us', icon: <FaUsers />, href: '/aboutus' },
-]
+interface SessionData {
+	user: {
+		email: string
+	}
+}
+
+interface UserMutation {
+	isSuccess: boolean
+	mutate: (email: string) => void
+}
 
 interface NavItemProps {
 	label: string
@@ -52,7 +54,7 @@ const NavItem = ({ label, icon, href }: NavItemProps) => {
 	)
 }
 
-const NavList = () => (
+const NavList = ({ navItems }: { navItems: NavItemProps[] }) => (
 	<ul className='space-y-2 text-sm'>
 		{navItems.map((item) => (
 			<NavItem key={item.label} {...item} />
@@ -60,20 +62,8 @@ const NavList = () => (
 	</ul>
 )
 
-const MainLayout = ({ children }: MainLayoutProps) => {
-	const { data: session, status } = useSession()
-	const [isOpen, setIsOpen] = useState(false)
+const useScrolling = () => {
 	const [isScrolling, setIsScrolling] = useState(false)
-
-	const email = session?.user?.email ?? ''
-	const userMutation = api.user.addUser.useMutation()
-	const hasMutated = userMutation.isSuccess
-
-	useEffect(() => {
-		if (session && email && !hasMutated) {
-			userMutation.mutate(email)
-		}
-	}, [session, email, hasMutated])
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -89,7 +79,48 @@ const MainLayout = ({ children }: MainLayoutProps) => {
 		return () => window.removeEventListener('scroll', handleScroll)
 	}, [])
 
-	const toggleMenu = () => setIsOpen(!isOpen)
+	return isScrolling
+}
+
+const MainLayout = ({ children }: MainLayoutProps) => {
+	const { data: session, status } = useSession() as {
+		data: SessionData
+		status: string
+	}
+	const [isOpen, setIsOpen] = useState(false)
+	const isScrolling = useScrolling()
+
+	const email = session?.user?.email
+	const userMutation = api.user.addUser.useMutation() as UserMutation
+	const hasMutated = userMutation.isSuccess
+
+	const navItems = useMemo(
+		() => [
+			{ label: 'Home', icon: <FaHome />, href: '/' },
+			{
+				label: 'Jadwal Kelas',
+				icon: <FaChalkboardTeacher />,
+				href: '/schedule',
+			},
+			{ label: 'Peminjaman', icon: <FaBook />, href: '/borrow' },
+			{ label: 'Berita Acara', icon: <FaNewspaper />, href: '/news' },
+			{
+				label: 'Lab dalam Angka',
+				icon: <FaChartBar />,
+				href: '/statistics',
+			},
+			{ label: 'About Us', icon: <FaUsers />, href: '/aboutus' },
+		],
+		[],
+	)
+
+	useEffect(() => {
+		if (session && email && !hasMutated) {
+			userMutation.mutate(email)
+		}
+	}, [session, email, hasMutated])
+
+	const toggleMenu = useCallback(() => setIsOpen(!isOpen), [isOpen])
 
 	if (status === 'loading') {
 		return (
@@ -144,7 +175,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
 			{session?.user?.email ? (
 				<div className='flex flex-grow overflow-y-hidden'>
 					<aside className='hidden w-80 overflow-y-hidden border-r border-gray-200 bg-white p-4 pt-12 md:sticky md:top-0 md:block md:pt-6'>
-						<NavList />
+						<NavList navItems={navItems} />
 					</aside>
 					<main className='flex-grow p-8'>{children}</main>
 				</div>
